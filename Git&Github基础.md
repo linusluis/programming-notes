@@ -1,5 +1,5 @@
-
-# Git&Github基础
+    
+# 一、Git基础
 
 ## 1、版本控制
 
@@ -7,7 +7,7 @@
 
 版本控制是一种记录文件变化的方式，以便将来查阅特定版本的文件内容	
 
-![版本控制举例](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E4%B8%BE%E4%BE%8B.png?Expires=1651323380&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=TDCLO55CNaspnCH7O73rwl%2BNOgo%3D&versionId=CAEQHRiBgIDD2afpgxgiIDA5MDFmYjM0MWFhMTRmNjE4MDY2ZGRmODMxNjgyYTQ0)
+![版本控制举例](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E4%B8%BE%E4%BE%8B.png?Expires=1651327963&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=APcL8DL%2F7oJWzxok8HHnFegfCnM%3D&versionId=CAEQHRiBgIDD2afpgxgiIDA5MDFmYjM0MWFhMTRmNjE4MDY2ZGRmODMxNjgyYTQ0)
 
 ### （2）人为维护文档版本的问题
 
@@ -35,7 +35,7 @@ Git是一个版本管理控制系统，它可以在任何时间点，将文档�
 | --- | --- | --- |
 | 用于存放提交记录 | 临时存放被修改文件 | 被Git管理的项目目录 |
 
-![git工作的基本流程](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/git%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B.png?Expires=1651323912&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=fowlCUtm9U2Y67XIlFsXn4B8%2FuU%3D&versionId=CAEQHRiBgICs2KfpgxgiIDg5N2U5MDNiOGZjMTQ2NWNiZTkwNDhhMTIyMWYxNzVk)
+![git工作的基本流程](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/git%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B.png?Expires=1651328010&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=fVc%2FbK0nIVcDYBzP5k3PgNfxYuw%3D&versionId=CAEQHRiBgICs2KfpgxgiIDg5N2U5MDNiOGZjMTQ2NWNiZTkwNDhhMTIyMWYxNzVk)
 
 ## 5、Git的使用
 
@@ -75,17 +75,17 @@ Git是一个版本管理控制系统，它可以在任何时间点，将文档�
 
 第一次向gir仓库中提交更新记录时自动产生的一个分支
 
-![主分支](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E4%B8%BB%E5%88%86%E6%94%AF.png?Expires=1651324085&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=twJsGXcuZ%2Fta9ktD4Vk9FYa0ppA%3D&versionId=CAEQHRiBgMDL2KfpgxgiIDRjOWE2Y2U1N2MzZjRkNmJhOTg4MGIzNTk0MjQzNGNi)
+![主分支](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E4%B8%BB%E5%88%86%E6%94%AF.png?Expires=1651328046&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=8KmLWkt1pBJb8HP1DamB4njx%2Frk%3D&versionId=CAEQHRiBgMDL2KfpgxgiIDRjOWE2Y2U1N2MzZjRkNmJhOTg4MGIzNTk0MjQzNGNi)
 
 ### （2）开发分支（develop）
 
 作为开发的分支，基于master分支创建
 
-![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E5%BC%80%E5%8F%91%E5%88%86%E6%94%AF.png?Expires=1651324165&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=lhIpyafsbVuhQRVLzp6spwnN4SM%3D&versionId=CAEQHRiBgICC2afpgxgiIDk0M2YxODUxY2NkMjQ0OWNiNzE5MGJjZWIyNGMyNjUw)
+![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E5%BC%80%E5%8F%91%E5%88%86%E6%94%AF.png?Expires=1651328078&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=dla7kHuUZVqH2tG8sal%2BgzyoHZg%3D&versionId=CAEQHRiBgICC2afpgxgiIDk0M2YxODUxY2NkMjQ0OWNiNzE5MGJjZWIyNGMyNjUw)
 
 ### （3）功能分支（feature）：作为开发具体功能的分支，基于开发分支创建
 
-![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E5%8A%9F%E8%83%BD%E5%88%86%E6%94%AF.png?Expires=1651324188&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=UFK9Hs0P7FdRHyJfDPSAIHPryQw%3D&versionId=CAEQHRiBgIC82KfpgxgiIDU5ZTA0NDJkY2U0NzQ1MjQ4NTg0NTE3ODdmYjcyMDY3)
+![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E5%8A%9F%E8%83%BD%E5%88%86%E6%94%AF.png?Expires=1651328102&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=kR55lGn9QLfkgNqGNQ%2BE%2FBAwWcw%3D&versionId=CAEQHRiBgIC82KfpgxgiIDU5ZTA0NDJkY2U0NzQ1MjQ4NTg0NTE3ODdmYjcyMDY3)
 
 ## 2、分支命令
 
@@ -102,17 +102,17 @@ Git是一个版本管理控制系统，它可以在任何时间点，将文档�
    - 存储临时改动：git stash
    - 回复改动 git stash pop  
 
-# Github
+# 三、Github
 
 在版本控制系统中，大约90%的操作都是在本地仓库中进行的：暂存，提交，查看状态或者历史记录等等。除此之外，如果仅仅只有你一个人在这个项目里工作，你永远没有机会需要设置一个远程仓库。  
 
 只有当你需要和你的团队共享数据时，设置一个远程仓库才有意义。你可以把它想象成一个“文件管理服务器”，利用这个服务器可以与开发团队的其他成员进行数据交换
 
-### （1）注册
+## 1、注册
 
 访问github，Sign up注册即可
 
-### （2）多人协作开发流程
+## 2、多人协作开发流程
 
 1. A在自己的计算机中创建本地仓库
 1. A在github中创建远程仓库
@@ -121,24 +121,24 @@ Git是一个版本管理控制系统，它可以在任何时间点，将文档�
 1. B将本地仓库中开发的内容推送到远程仓库
 1. A将远程仓库中的最新内容拉取到本地
 
-![多人协作开发流程](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B.png?Expires=1651324288&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=H7xWF6pgMsN6xi6HDkzd9ws%2BuFk%3D&versionId=CAEQHRiBgMCL2afpgxgiIDNlNDEzNzk1MzU3ODQ4Njk5OGQzMmJjYWJmZGU5OTE0)
+![多人协作开发流程](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B.png?Expires=1651328129&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=p08NzdvyC6bwUQVoWCjTyKltuI4%3D&versionId=CAEQHRiBgMCL2afpgxgiIDNlNDEzNzk1MzU3ODQ4Njk5OGQzMmJjYWJmZGU5OTE0)
 
-### （3）远程推送
+## 3、远程推送
 
 1. 从github上拿到要提交的仓库地址。
 1.  在本地将要推送的文件夹下输入命令`git push 远程仓库地址 分支名称` ，将本地文件推送到远程仓库。
 
 【拓展】<br />当我们第一次向远程仓库推送文件，会进行用户名和密码的验证。之后再推送就不会了。<br />这个功能并不是git给我们提供的，而是win10系统帮我们记住了用户名和密码。<br />这个信息被系统保存在哪儿了呢？<br />control panel--->Credential Manager--->window credential，这样就能看到github的用户名和密码了
 
-### （4）为远程仓库起一个别名
+## 4、为远程仓库起一个别名
 
 `git remote add 别名 远程仓库地址 分支名称`。这样，我们就可以使用别名代替远程仓库地址来进行推送了。`git push 别名 分支名称`。<br />如果使用`git push -u 别名 分支名称`，git会帮助你记住远程仓库地址和分支名称，所以在下一次提交，只需要写`git push`就可以了。
 
-### （5）github远程仓库克隆到本地
+## 5、github远程仓库克隆到本地
 
 克隆远端数据仓库到本地`git clone仓库地址`。<br />克隆是不需要身份验证的。  
 
-### （6）程序员push到远端仓库
+## 6、程序员push到远端仓库
 
 结合上面多人协作开发流程的那张图来说，当B需要push到远程仓库的时候，是没有权限的。需要程序员A邀请程序员B成为当前项目的开发者。  
 
@@ -146,7 +146,7 @@ Git是一个版本管理控制系统，它可以在任何时间点，将文档�
 
 **!!!注意!!!：**虽然程序员B的本地仓库是clone过来的，但是它clone的很全面，就连程序员A添加的远程地址和别名也克隆过来了，所以如果是设置了别名的项目可以直接通过**git push origin master**进行推送。  
 
-### （7）程序员A将最新版本pull到本地<br /><br />
+## 7、程序员A将最新版本pull到本地<br /><br />
 拉取远程仓库中最新的版本：`git pull远程仓库地址 分支名称`<br />**!!!注意!!!：**pull操作是不需要验证身份的。
 
 **git pull 与 git clone的区别：**
@@ -156,7 +156,7 @@ git clone是完全clone远程仓库，git clone只需要在第一次加入到项
 
 **!!!注意!!!：**如果远程仓库中的版本高于本地仓库的版本，此时本地仓库是不能向远程仓库提交的。本地仓库必须先拉取内容到本地，再向远程仓库中提交。
 
-### （8）解决冲突
+## 8、解决冲突
 
 在多人同时开发一个项目时，如果两个人修改了同一个文件的同一个地方，就会发生冲突，只有先向远程仓库推送的人才能推送成功，后推送的人推送的时候会有错误提示。因为第一个人已经向远程仓库提交了版本，第二个人本地没有这个版本，导致远程仓库版本高于本地仓库版本冲突需要人为解决。    
 
@@ -166,7 +166,7 @@ git clone是完全clone远程仓库，git clone只需要在第一次加入到项
 
 然后在这个文件的基础上进行更改，然后push到远程仓库就解决了。  
 
-### （9）跨团队协作（pull request的使用）
+## 9、跨团队协作（pull request的使用）
 
 如果在github上发现了一个非常好的项目，并且我们有想修改完善这个项目的想法。就可以参照下述步骤通过pull request对这个项目做贡献，并且和原作者作交流。
 
@@ -177,7 +177,7 @@ git clone是完全clone远程仓库，git clone只需要在第一次加入到项
 1. 原仓库作者审核
 1. 原仓库作者合并（merge）代码
 
-### （10）ssh免登陆
+## 10、ssh免登陆
 
 当我们push的时候，github要求我们验证用户名和密码。win10系统只在第一次push的时候需要提供。这是因为，win10系统的特性，在我们第一次验证之后系统记住了我们的凭据。但是如果我们的系统不支持这个特性的话，就非常麻烦了。  
 
@@ -207,7 +207,7 @@ github为我们提供了另外一种仓库通讯协议ssh协议。这种协议�
 
 win10已经普遍了，win11都问世了。这个大致了解一下就可！
 
-### （11）git忽略清单
+## 11、git忽略清单
 
 将不需要被git管理的文件名字添加到此文件中，在执行git命令的时候，git就会忽略这些文件。<br />git忽略清单文件名称：`.gitignore` ** !!!注意!!!不要忘记.**
 
@@ -222,7 +222,7 @@ win10已经普遍了，win11都问世了。这个大致了解一下就可！
 ![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/git%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6.png?Expires=1651324891&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=ydLd76Q3a10x1PYqyO7%2BEZpa1n0%3D&versionId=CAEQHRiBgMDRgdbpgxgiIGYwODFlOTdiM2ExMjQ2MDZiYTkzY2VjN2ExOGZiMDgx)
 
 
-### （12）为仓库添加详细的说明
+## 12、为仓库添加详细的说明
 
 1. 新建`README.md`
 1. 提交到本地仓库，然后推送到远程。
