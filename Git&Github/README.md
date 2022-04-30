@@ -1,6 +1,6 @@
 ## 文章
 
-[Git常用命令，总结的很全了](https://segmentfault.com/a/1190000039147662)
+[Git常用命令，总结的很全了](https://segmentfault.com/a/1190000039147662)--By 蜘蛛侠不会飞_segamentfault
 
 ## 基础知识看这
 
