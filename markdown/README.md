@@ -1,5 +1,6 @@
+## 基本语法
 
-# 程序员必备技能——markdown
+[基本语法看这里就够了](https://markdown.com.cn/)
 
 ## 写markdown的自我约束  
 
