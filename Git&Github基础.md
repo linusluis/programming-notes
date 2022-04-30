@@ -1,0 +1,228 @@
+
+# Git&Github基础
+
+## 1、版本控制
+
+### （1）什么是版本控制
+
+版本控制是一种记录文件变化的方式，以便将来查阅特定版本的文件内容	
+
+![版本控制举例](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E4%B8%BE%E4%BE%8B.png?Expires=1651323380&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=TDCLO55CNaspnCH7O73rwl%2BNOgo%3D&versionId=CAEQHRiBgIDD2afpgxgiIDA5MDFmYjM0MWFhMTRmNjE4MDY2ZGRmODMxNjgyYTQ0)
+
+### （2）人为维护文档版本的问题
+
+1. 文档数量多而且命名不清晰导致文档版本混乱
+
+2. 每次编辑文档需要复制，不方便
+
+3. 多人同时编辑同一个文档，容易产生覆盖
+
+## 2、Git是什么？
+
+Git是一个版本管理控制系统，它可以在任何时间点，将文档的状态作为更新记录保存起来，也可以在任何时间点 ，将更新记录恢复回来
+
+## 3、Git下载和安装
+
+下载安装地址：[https://git-scm.com/](https://git-scm.com/)
+
+### （1）查看git版本 
+
+`git --version`
+
+## 4、Git基本工作流程
+
+| git仓库 | 暂存区 | 工作目录 |
+| --- | --- | --- |
+| 用于存放提交记录 | 临时存放被修改文件 | 被Git管理的项目目录 |
+
+![git工作的基本流程](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/git%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B.png?Expires=1651323912&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=fowlCUtm9U2Y67XIlFsXn4B8%2FuU%3D&versionId=CAEQHRiBgICs2KfpgxgiIDg5N2U5MDNiOGZjMTQ2NWNiZTkwNDhhMTIyMWYxNzVk)
+
+## 5、Git的使用
+
+### （1）Git使用前配置
+
+- 在使用Git前，需要告诉git你是谁，在想git仓库中提交时需要用到
+1. 配置提交人姓名：`git config --global user.name 提交人姓名`
+1. 配置提交人邮箱：`git config --global user.email 提交人邮箱`
+1. 查看git配置信息：`git config --list` 
+!!!注意!!!：
+   - 如果要对配置信息进行修改，重复上述命令即可
+   - 配置只需要执行一次
+
+### （2）提交步骤
+
+1. `git init` 初始化仓库
+1. `git status` 查看文件状态
+1. `git add 文件列表`追踪文件（从工作目录添加到暂存区中）
+1. `git commit -m 提交信息`向仓库中提交代码（暂存区到仓库）
+1. `git log` 查看提交记录  
+
+### （3）恢复记录
+
+- 用暂存区中的文件覆盖工作目录中的文件：`git checkout 文件`
+- 将文件从暂存区中删除：`git rm --cached 文件`
+- 将git仓库中指定的更新记录恢复出来，并且覆盖暂存区和工作目录：`git reset --hard commitID`
+
+# 二、分支
+
+为了便于理解，暂时可以认为分支就是当前工作目录中代码的一份副本  
+
+使用分支，可以让我们从开发主线上分离出来，以免影响开发主线  
+
+## 1、分支细分
+
+### （1）主分支（master）：  
+
+第一次向gir仓库中提交更新记录时自动产生的一个分支
+
+![主分支](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E4%B8%BB%E5%88%86%E6%94%AF.png?Expires=1651324085&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=twJsGXcuZ%2Fta9ktD4Vk9FYa0ppA%3D&versionId=CAEQHRiBgMDL2KfpgxgiIDRjOWE2Y2U1N2MzZjRkNmJhOTg4MGIzNTk0MjQzNGNi)
+
+### （2）开发分支（develop）
+
+作为开发的分支，基于master分支创建
+
+![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E5%BC%80%E5%8F%91%E5%88%86%E6%94%AF.png?Expires=1651324165&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=lhIpyafsbVuhQRVLzp6spwnN4SM%3D&versionId=CAEQHRiBgICC2afpgxgiIDk0M2YxODUxY2NkMjQ0OWNiNzE5MGJjZWIyNGMyNjUw)
+
+### （3）功能分支（feature）：作为开发具体功能的分支，基于开发分支创建
+
+![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E5%8A%9F%E8%83%BD%E5%88%86%E6%94%AF.png?Expires=1651324188&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=UFK9Hs0P7FdRHyJfDPSAIHPryQw%3D&versionId=CAEQHRiBgIC82KfpgxgiIDU5ZTA0NDJkY2U0NzQ1MjQ4NTg0NTE3ODdmYjcyMDY3)
+
+## 2、分支命令
+
+`git branch` 查看分支
+`git branch 分支名称` 创建分支
+`git checkout 分支名称` 切换分支
+`git merge 来源分支` 合并分支
+`git branch -d 分支名称`  删除分支（分支被合并后才允许删除）（-D强制删除）
+
+## 3、暂时保存更改
+
+在git中，可以暂时提取分支上所有的改动并存储，让开发人员得到一个干净的工作副本，临时转向其他工作。
+使用场景：分支临时切换
+   - 存储临时改动：git stash
+   - 回复改动 git stash pop  
+
+# Github
+
+在版本控制系统中，大约90%的操作都是在本地仓库中进行的：暂存，提交，查看状态或者历史记录等等。除此之外，如果仅仅只有你一个人在这个项目里工作，你永远没有机会需要设置一个远程仓库。  
+
+只有当你需要和你的团队共享数据时，设置一个远程仓库才有意义。你可以把它想象成一个“文件管理服务器”，利用这个服务器可以与开发团队的其他成员进行数据交换
+
+### （1）注册
+
+访问github，Sign up注册即可
+
+### （2）多人协作开发流程
+
+1. A在自己的计算机中创建本地仓库
+1. A在github中创建远程仓库
+1. A将本地仓库推送到远程仓库
+1. B克隆远程仓库到本地进行开发
+1. B将本地仓库中开发的内容推送到远程仓库
+1. A将远程仓库中的最新内容拉取到本地
+
+![多人协作开发流程](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B.png?Expires=1651324288&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=H7xWF6pgMsN6xi6HDkzd9ws%2BuFk%3D&versionId=CAEQHRiBgMCL2afpgxgiIDNlNDEzNzk1MzU3ODQ4Njk5OGQzMmJjYWJmZGU5OTE0)
+
+### （3）远程推送
+
+1. 从github上拿到要提交的仓库地址。
+1.  在本地将要推送的文件夹下输入命令`git push 远程仓库地址 分支名称` ，将本地文件推送到远程仓库。
+
+【拓展】<br />当我们第一次向远程仓库推送文件，会进行用户名和密码的验证。之后再推送就不会了。<br />这个功能并不是git给我们提供的，而是win10系统帮我们记住了用户名和密码。<br />这个信息被系统保存在哪儿了呢？<br />control panel--->Credential Manager--->window credential，这样就能看到github的用户名和密码了
+
+### （4）为远程仓库起一个别名
+
+`git remote add 别名 远程仓库地址 分支名称`。这样，我们就可以使用别名代替远程仓库地址来进行推送了。`git push 别名 分支名称`。<br />如果使用`git push -u 别名 分支名称`，git会帮助你记住远程仓库地址和分支名称，所以在下一次提交，只需要写`git push`就可以了。
+
+### （5）github远程仓库克隆到本地
+
+克隆远端数据仓库到本地`git clone仓库地址`。<br />克隆是不需要身份验证的。  
+
+### （6）程序员push到远端仓库
+
+结合上面多人协作开发流程的那张图来说，当B需要push到远程仓库的时候，是没有权限的。需要程序员A邀请程序员B成为当前项目的开发者。  
+
+那么如何邀请呢？在github仓库中，依次点击：Settings-->Collaborators-->填入程序员B的github账号-->程序员A复制邀请链接，将链接发送给程序员B-->程序员B接受邀请即可。    
+
+**!!!注意!!!：**虽然程序员B的本地仓库是clone过来的，但是它clone的很全面，就连程序员A添加的远程地址和别名也克隆过来了，所以如果是设置了别名的项目可以直接通过**git push origin master**进行推送。  
+
+### （7）程序员A将最新版本pull到本地<br /><br />
+拉取远程仓库中最新的版本：`git pull远程仓库地址 分支名称`<br />**!!!注意!!!：**pull操作是不需要验证身份的。
+
+**git pull 与 git clone的区别：**
+
+git pull命令只是拉取远程仓库最新的命令，最新版本和本地的版本进行比较，所以git pull命令是在有本地仓库的基础上进行的。
+git clone是完全clone远程仓库，git clone只需要在第一次加入到项目开发中才会用到。
+
+**!!!注意!!!：**如果远程仓库中的版本高于本地仓库的版本，此时本地仓库是不能向远程仓库提交的。本地仓库必须先拉取内容到本地，再向远程仓库中提交。
+
+### （8）解决冲突
+
+在多人同时开发一个项目时，如果两个人修改了同一个文件的同一个地方，就会发生冲突，只有先向远程仓库推送的人才能推送成功，后推送的人推送的时候会有错误提示。因为第一个人已经向远程仓库提交了版本，第二个人本地没有这个版本，导致远程仓库版本高于本地仓库版本冲突需要人为解决。    
+
+那么如何解决就将成为重中之重了。第二个人需要将远程仓库中的高版本拉取到本地，然后会发现拉取到本地的文件产生了变化，如下图：
+
+![多人协作发生冲突的情况](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C%E5%8F%91%E7%94%9F%E5%86%B2%E7%AA%81%E7%9A%84%E6%83%85%E5%86%B5.png?Expires=1651324631&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=UQuryGvaft%2BAAEYNJ1sbB04g64E%3D&versionId=CAEQHRiBgMC8jc7pgxgiIDY0NmZlODIzMzE4ZjRjNDk4N2MyMmM5YzJkNjRjMWUy)
+
+然后在这个文件的基础上进行更改，然后push到远程仓库就解决了。  
+
+### （9）跨团队协作（pull request的使用）
+
+如果在github上发现了一个非常好的项目，并且我们有想修改完善这个项目的想法。就可以参照下述步骤通过pull request对这个项目做贡献，并且和原作者作交流。
+
+1. 程序员C fork仓库
+1. 程序员C将仓库克隆在本地进行修改
+1. 程序员C将仓库推送到远程
+1. 程序员C发起pull request
+1. 原仓库作者审核
+1. 原仓库作者合并（merge）代码
+
+### （10）ssh免登陆
+
+当我们push的时候，github要求我们验证用户名和密码。win10系统只在第一次push的时候需要提供。这是因为，win10系统的特性，在我们第一次验证之后系统记住了我们的凭据。但是如果我们的系统不支持这个特性的话，就非常麻烦了。  
+
+github为我们提供了另外一种仓库通讯协议ssh协议。这种协议在实现身份验证的时候，是不需要使用用户名和密码的，可实现免登陆操作。  
+
+那么它是如何实现身份验证的呢？  
+
+在ssh协议中，身份验证通过秘钥实现，秘钥是成对出现的，分别为公钥和私钥。ssh协议通过验证公钥与私钥的配对情况，决定验证是否通过。公钥就相当于门锁，私钥就相当于钥匙，如果锁与钥匙匹配，就说明验证通过了。  
+
+公钥和私钥需要开发者使用命令生成，实际上就是两个文件。公钥要放在github账户中，私钥保存在开发者的电脑中。当开发者通过ssh协议向远程仓库推送内容的时候，公钥和私钥会进行配对，如果配对成功，内容就会推送成功。反之则失败。
+
+[git忽略文件](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/SSH%E5%8D%8F%E8%AE%AE%E5%8E%9F%E7%90%86.jpg?Expires=1651321646&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=eMZNwzeMrQfor2hXIFXKRjYg%2B0Q%3D&versionId=CAEQHRiBgIDj0_LogxgiIGY4NzRhYzhmODgwODRkNTNhZWY4OWZkN2ZlYmNlNDkx)
+
+**具体操作**
+
+1. 使用dot命令生成秘钥：`ssh-keygen`
+1. 秘钥存储目录：`C:\Users\用户\.ssh`
+1. 公钥名称：`id_rsa.pub`
+
+公钥需要保存到github服务器中，复制公钥到github中的设置-->找到SSH-->new SHH key-->		粘贴私钥，title不用填，会自动填充
+
+4. 私钥名称：`is_rsa`
+
+私钥保存在开发者的电脑中
+
+5. 在项目中复制SSH地址，推送的时候将原来的http地址替换为SHH地址，也可起别名。这样就实现了身份验证，可以免登陆了。
+
+win10已经普遍了，win11都问世了。这个大致了解一下就可！
+
+### （11）git忽略清单
+
+将不需要被git管理的文件名字添加到此文件中，在执行git命令的时候，git就会忽略这些文件。<br />git忽略清单文件名称：`.gitignore` ** !!!注意!!!不要忘记.**
+
+将工作目录中的文件全部添加到暂存区：`git add .`
+
+在实际的项目开发中，有哪些文件不需要被git管理呢？比如我们在做node项目的时候，在项目的根目录下有一个 node_modules的文件夹，这个文件夹存储的都是项目依赖的第三方模块。我们是不会更改这个项目中的文件的，所以它没有必要被git管理，它也没有必要被上传到远程仓库中。如果不将这个文件上传到远程仓库中，当别人拿到这个项目的时候，项目岂不是运行不了了。这一点不用 担心。由于项目的根目录下存在package.json文件，其他人拿到这个项目的时候，只需要根据这个文件下载项目所依赖的模块就可以了。  
+
+再或者，有时候在项目中写一些临时的代码文件，这些代码文件也不想被git管理。所有不想被git管理的文件及文件夹，都写在git忽略文件清单中。  
+
+不想被管理的将名字添加到该文件中就行。
+
+![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/git%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6.png?Expires=1651324891&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=ydLd76Q3a10x1PYqyO7%2BEZpa1n0%3D&versionId=CAEQHRiBgMDRgdbpgxgiIGYwODFlOTdiM2ExMjQ2MDZiYTkzY2VjN2ExOGZiMDgx)
+
+
+### （12）为仓库添加详细的说明
+
+1. 新建`README.md`
+1. 提交到本地仓库，然后推送到远程。
