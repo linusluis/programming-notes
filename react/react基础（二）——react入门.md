@@ -1,33 +1,40 @@
-# 二、React入门
+# 一、React入门
+
 ## 1、官网
 
-- 英文官网：[https://reactjs.org/](https://reactjs.org/)
-- 中文官网：[https://react.docschina.org/](https://react.docschina.org/)
+英文官网：[https://reactjs.org/](https://reactjs.org/)  
+中文官网：[https://react.docschina.org/](https://react.docschina.org/)
+
 ## 2、React高效的原因
 
-- 使用虚拟（Virtual）DOM，不总是直接操作真实DOM。（在操作真实DOM之前，会把两个不同的虚拟DOM进行比较，比较出有差异的那一部分，再去更新页面）
-- DOM Diffing算法，最小化页面重绘
+1. 使用虚拟（Virtual）DOM，不总是直接操作真实DOM。（在操作真实DOM之前，会把两个不同的虚拟DOM进行比较，比较出有差异的那一部分，再去更新页面）  
+2. DOM Diffing算法，最小化页面重绘  
+
 ## 3、React的基本使用
+
 ### （1）实现Hello React 
 
-- 效果图：
+第一次使用react，当然是要完成helloreact的效果啦，效果图：
 
 ![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/Hello_react.png?Expires=1651306487&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=mj4D83l5gYty8tJsMzvYPE9bOvo%3D&versionId=CAEQHRiBgMCF3LS4gxgiIDZlMzFiYzY3MTZhNzRkNWRiZGRiNjFhNzIyN2RiNTM4)
 
  
 
-- 依赖包结构（旧版本16.8）
-   - babel.min.js：学习React,写的不是原生的js，是jsx（jsx在js的基础上提出了一些要求和新的语法）。我们写的jsx语法，但是浏览器只认识js，所以需要babel。babel总共有两个作用：①是将ES6转换为ES5②是将jsx转换为js
-   - react.development.js：React的核心库
-   - react-dom-development.js：React的扩展库
-   - prop-types：用于对prop的类型和默认值做限制
-- 步骤：
-   1. 引入依赖包：react-development.js要在react-dom-development.js之前引入
-   1. 准备好一个容器
-   1. 在script标签中编写jsx代码，注意：一定要将type类型设置为`type='text/babel'`
-   1. 创建虚拟DOM。一定不要把标签当作字符串，一定不要写引号
-   1. 渲染虚拟DOM到页面 ，使用`ReactDOM.reander(虚拟DOM,容器)`
-- 代码
+react依赖包结构:
+>- `babel.min.js`：学习React,写的不是原生的js，是jsx（jsx在js的基础上提出了一些要求和新的语法）。我们写的jsx语法，但是浏览器只认识js，所以需要babel。babel总共有两个作用：①是将ES6转换为ES5②是将jsx转换为js   
+>- `react.development.js`：React的核心库  
+>- `react-dom-development.js`：React的扩展库    
+>- `prop-types`：用于对prop的类型和默认值做限制  
+  
+步骤：
+>1. 引入依赖包：`react-development.js`要在`react-dom-development.js`之前引入
+>1. 准备好一个容器
+>1. 在script标签中编写jsx代码，注意：一定要将type类型设置为`type='text/babel'`
+>1. 创建虚拟DOM。一定不要把标签当作字符串，一定不要写引号
+>1. 渲染虚拟DOM到页面 ，使用`ReactDOM.reander(虚拟DOM,容器)`  
+
+代码  
+
 ```html
 <body>
     <!-- 准备好一个容器 -->
@@ -50,8 +57,10 @@
 ```
 ### （2）创建虚拟DOM的两种方式
 
-- 纯JS方式（不用）
-   - 演示：
+**纯JS方式（实际开发不用，了解即可）**  
+
+代码演示：  
+
 ```html
 <body>
     <!-- 准备好一个容器 -->
@@ -71,57 +80,62 @@
 </body>
 ```
 
-   - 原生js中有createElement()方法，React中也有这个方法。`React.createElement(标签名,标签属性,标签内容)`
-   - 弊端：当发生标签嵌套的时候需要多次调用React.createElement()，比如上述代码在p标签中嵌入一个span标签，这样写就非常麻烦了
-- JSX方式：和之前写的一样。
-   - 和原生js创建虚拟DOM的方式相比，可见jsx的好。jsx来到这个世界上它只为解决一个问题，就是使用原生js创建虚拟DOM太繁琐了，有了jsx可以让编码人员更加简单的创建虚拟DOM
-   - 而且用小括号包起来，可以缩进。
+说明
+>原生js中有`createElement()`方法，React中也有这个方法。`React.createElement(标签名,标签属性,标签内容)`
+>弊端：当发生标签嵌套的时候需要多次调用`React.createElement()`，比如上述代码在p标签中嵌入一个span标签，这样写就非常麻烦了  
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/2960726/1650631053715-1ec68430-7de3-407a-ac85-6a788b6ce715.png#clientId=ua5ecdf6c-b270-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=69&id=u45426607&margin=%5Bobject%20Object%5D&name=image.png&originHeight=137&originWidth=747&originalType=binary&ratio=1&rotation=0&showTitle=false&size=20028&status=done&style=none&taskId=u64e15769-5f14-4c05-b849-3c8f51c4b84&title=&width=373.5)
+**JSX方式：就是上面实现reacthello的代码，这里不再重新写了**  
+
+>和原生js创建虚拟DOM的方式相比，可见jsx的好。jsx来到这个世界上它只为解决一个问题，就是使用原生js创建虚拟DOM太繁琐了，有了jsx可以让编码人员更加简单的创建虚拟DOM
+>而且用小括号包起来，可以缩进。  
+   
 ### （3）虚拟DOM与真实DOM
 
-- 关于虚拟DOM
-   - 本质是Object类型的对象（一般对象）
-   - 虚拟DOM比较“轻”，真实DOM比较“重”，因为虚拟DOM是React内部在用，无需真实DOM上那么多的属性（使用debugger;在控制台可以查看节点属性）
-   - 虚拟DOM最终会被React转化为真实DOM，呈现在页面上
-   - 我们编码时基本只需要操作react 的虚拟DOM相关数据，react会自动转换为真实DOM
-## 4、jsx语法规则
-### （1）jsx介绍
+关于虚拟DOM
+>本质是Object类型的对象（一般对象）
+>虚拟DOM比较“轻”，真实DOM比较“重”，因为虚拟DOM是React内部在用，无需真实DOM上那么多的属性（使用debugger;在控制台可以查看节点属性）
+>虚拟DOM最终会被React转化为真实DOM，呈现在页面上
+>我们编码时基本只需要操作react 的虚拟DOM相关数据，react会自动转换为真实DOM  
 
-1. 全称：JavaScript XML
-1. react定义的一种类似于XML的JS扩展语法：JS+XML 。本质是`React.createElement(component,props,...children)`方法的语法糖
-1. 作用：用来简化创建虚拟DOM
-   - 写法：var ele = <h1>Hello JSX!</h1>
-   - 注意1：它不是字符串，也不是HTML、XML标签
-   - 注意2：它最终产生的就是一个JS对象
-4. 标签名任意：HTML标签或其他标签
-4. 标签名属性任意：HTML标签属性或其他
-4. 基本语法规则：
-   - 遇到<开头的代码，以标签的语法解析：html同名标签转换为html同名元素，其它标签需要特别解析
-   - 遇到以{开头的代码，以JS语法解析：标签中的js表达式必须用{ }包含
-7. babel.js的作用
-   - 浏览器不能直接解析jsx代码，需要babel转译为纯js的代码才能运行
-   - 只要用了jsx，都要加上type='text/babel'，声名需要babel来处理
-8. jsx的注释方式`{/*<input ref = {this.saveInput} type="text" /><br/><br/>*/}`
+## 4、jsx语法规则  
+
+### （1）jsx介绍  
+
+>1. 全称：JavaScript XML
+>1. react定义的一种类似于XML的JS扩展语法：JS+XML 。本质是`React.createElement(component,props,...children)`方法的语法糖
+>1. 作用：用来简化创建虚拟DOM
+>>写法：`var ele = <h1>Hello JSX!</h1>`  
+>>注意1：它不是字符串，也不是HTML、XML标签  
+>>注意2：它最终产生的就是一个JS对象  
+>4. 标签名任意：HTML标签或其他标签  
+>4. 标签名属性任意：HTML标签属性或其他  
+>4. 基本语法规则：  
+>>遇到<开头的代码，以标签的语法解析：html同名标签转换为html同名元素，其它标签需要特别解析    
+>>遇到以{开头的代码，以JS语法解析：标签中的js表达式必须用{ }包含  
+>7. babel.js的作用
+>>浏览器不能直接解析jsx代码，需要babel转译为纯js的代码才能运行  
+>>只要用了jsx，都要加上`type='text/babel'`，声名需要babel来处理
+>8. jsx的注释方式`{/*<input ref = {this.saveInput} type="text" /><br/><br/>*/}`  
+
 ### （2）jsx语法规则
 
-1. 定义虚拟DOM时，不要写引号
-1. 标签中混入JS表达式时要用{}。（一定要注意区分【js语句】和【js表达式】）
-1. 样式的类名指定不要用class，要用className。这是因为class是ES6中class类的关键字。为了避免混淆，所以使用className
-1. 内联样式，要用style = {{key:value}}的形式去写（外层{}是语法规定，内层{}意思是一个对象，可以传递多个属性键值对）如果属性名为font-size这种的，使用“小驼峰”命名法。
-1. 只有一个根标签
-1. 标签必须闭合，如果是自闭和标签，加一个“/”
-1. 标签首字母
-   1. 若小写字母开头，则将标签转为html中同名元素，若html中无该标签对应的同名元素，则报错。
-   1. 若大写字母开头，react就去渲染对应的组件，若组件没有定义，则报错
+>1. 定义虚拟DOM时，不要写引号
+>1. 标签中混入JS表达式时要用{}。（一定要注意区分【js语句】和【js表达式】）
+>1. 样式的类名指定不要用class，要用className。这是因为class是ES6中class类的关键字。为了避免混淆，所以使用className
+>1. 内联样式，要用`style = {{key:value}}`的形式去写（外层{}是语法规定，内层{}意思是一个对象，可以传递多个属性键值对）如果属性名为font-size这种的，使用“小驼峰”命名法。
+>1. 只有一个根标签
+>1. 标签必须闭合，如果是自闭和标签，加一个“/”
+>1. 标签首字母
+>>- 若小写字母开头，则将标签转为html中同名元素，若html中无该标签对应的同名元素，则报错。
+>>- 若大写字母开头，react就去渲染对应的组件，若组件没有定义，则报错
 
 ### （3）jsx的小练习
 
-- 需求：动态展示如下列表
+要求动态展示如下列表
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/2960726/1650642523150-f05e6f63-d66a-4bdf-accb-c29156a448be.png#clientId=ua5ecdf6c-b270-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=194&id=u0cc1a58c&margin=%5Bobject%20Object%5D&name=image.png&originHeight=198&originWidth=236&originalType=binary&ratio=1&rotation=0&showTitle=false&size=15917&status=done&style=none&taskId=u1bf06da4-7a0b-491b-8769-70dd663fc09&title=&width=231)
+![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/jsx%E7%9A%84%E5%B0%8F%E7%BB%83%E4%B9%A0.png?Expires=1651337622&OSSAccessKeyId=TMP.3KhmuNrcrscbg2KdxByauNAAXsoszbJJ8xHPyM2cRaw7N5KPK2XKkL1imNjxptEk9wTdPbM6bhA534cYVWTv7EaU4rueiG&Signature=Ww3DyaP3HY0SsxOoYVWTZMRt06k%3D&versionId=CAEQHRiBgICH1NrsgxgiIGEzYTFhMzk3ZGQ0ZDQ4MjdhMzkxMjliZDYwOTYxNzc3)
 
-- 代码：
+代码实现：
 ```html
 <body>
     <!-- //创建一个容器 -->
@@ -154,38 +168,43 @@
 </body>
 ```
 
-- 小总结
-   - 如果给react虚拟DOM一个数组，react会帮你遍历，如果给react虚拟DOM一个函数，react则不会帮你遍历
-   - 一定要注意区分：【js语句（代码）】与【js表达式】
-      - 表达式：一个表达式会产生一个值，可以放在任何一个需要值的地方
+### （4）小总结
+如果给react虚拟DOM一个数组，react会帮你遍历，如果给react虚拟DOM一个函数，react则不会帮你遍历  
+一定要注意区分：【js语句（代码）】与【js表达式】  
+>表达式：一个表达式会产生一个值，可以放在任何一个需要值的地方  
+>下面这些都是表达式：  
+>>a  
+>>a+b  
+>>demo(1)  
+>>arr.map()  
+>>dunction test() { }  
+   
+>语句（代码）：下面这些都是语句（代码）    
+>>f(){}  
+>>for(){}  
+>>switch(){case:xxxx}  
+>>  
+## 5、模块与组件、模块化与组件化的理解  
 
-下面这些都是表达式：
-① a
-② a+b
-③ demo(1)
-④ arr.map()
-⑤ dunction test() { }
+### （1）模块  
 
-      - 语句（代码）：下面这些都是语句（代码）
-         - ①if(){}
-         - ②for(){}
-         - ③switch(){case:xxxx}
-## 5、模块与组件、模块化与组件化的理解
-### （1）模块
+理解：向外提供特定功能的js程序，一般就是一个js文件    
+为什么要拆成模块：随着业务逻辑的增加，代码越来越多越复杂  
+作用：复用js，简化js的编写，提高js运行效率  
 
-- 理解：向外提供特定功能的js程序，一般就是一个js文件
-- 为什么要拆成模块：随着业务逻辑的增加，代码越来越多越复杂
-- 作用：复用js，简化js的编写，提高js运行效率
 ### （2）组件
 
-- 理解：用来实现局部功能的代码和资源的合集（html/css/jsimage等）
-- 为什么要用组件：一个界面的功能更复杂
-- 作用：复用编码，简化项目编码，提高运行效率
+理解：用来实现局部功能的代码和资源的合集（html/css/jsimage等）  
+为什么要用组件：一个界面的功能更复杂  
+作用：复用编码，简化项目编码，提高运行效率  
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/2960726/1650645406430-98853c80-977b-464c-ae1c-2893c9943faf.png#clientId=uc565876b-b29b-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=241&id=ua1f6cc0e&margin=%5Bobject%20Object%5D&name=image.png&originHeight=482&originWidth=895&originalType=binary&ratio=1&rotation=0&showTitle=false&size=200858&status=done&style=none&taskId=u1acab8ee-2b85-45f5-8d63-ffaf6bdd066&title=&width=447.5)
+![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E7%BB%84%E4%BB%B6.png?Expires=1651337961&OSSAccessKeyId=TMP.3KhmuNrcrscbg2KdxByauNAAXsoszbJJ8xHPyM2cRaw7N5KPK2XKkL1imNjxptEk9wTdPbM6bhA534cYVWTv7EaU4rueiG&Signature=xFxt7KGHM5KFJE6GbxvhajWYexs%3D&versionId=CAEQHRiBgIDO2.TsgxgiIGVmNTE5MmExMzQ5MDRlOTY5NmE4NTRjYjdiNzc0NTlk)
 ### （3）模块化
 
-- 当应用的js都以模块来编写的，这个应用就是一个模块化的应用
+当应用的js都以模块来编写的，这个应用就是一个模块化的应用  
+
 ### （4）组件化
-当应用是以多组件的方式实现，这个应用就是一个组件化的应用
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/2960726/1650645329745-eccc4685-6892-4529-af61-de6d3419cbe7.png#clientId=uc565876b-b29b-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=218&id=ubdaecd98&margin=%5Bobject%20Object%5D&name=image.png&originHeight=435&originWidth=808&originalType=binary&ratio=1&rotation=0&showTitle=false&size=127039&status=done&style=none&taskId=u6c626638-77c9-45d6-9077-75efc66c277&title=&width=404)
+
+当应用是以多组件的方式实现，这个应用就是一个组件化的应用  
+
+![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E7%BB%84%E4%BB%B6%E5%8C%96.png?Expires=1651337988&OSSAccessKeyId=TMP.3KhmuNrcrscbg2KdxByauNAAXsoszbJJ8xHPyM2cRaw7N5KPK2XKkL1imNjxptEk9wTdPbM6bhA534cYVWTv7EaU4rueiG&Signature=unIZJivWkKUotiJlJHHJ8yfwzGA%3D&versionId=CAEQHRiBgMD32.TsgxgiIDk5MGYyMTE4NTA2OTRlNjg5ODk5N2IzZjU3MDFiYjFl)
