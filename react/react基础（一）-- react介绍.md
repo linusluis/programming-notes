@@ -29,7 +29,7 @@
 4. 单向数据流
 - 不使用React
 
-  ![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E4%BD%BF%E7%94%A8react%E7%9A%84%E6%83%85%E5%86%B5.png?Expires=1651305545&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=ADx6CxtM0zibnhTcbTFBseOEKKM%3D&versionId=CAEQHRiBgMDZj6a4gxgiIGUzYTQ4OTJjMmU2NTQ0ZmZiZTNlMGNjN2RhMWYyZDBm)
+  ![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E4%B8%8D%E4%BD%BF%E7%94%A8react%E7%9A%84%E6%83%85%E5%86%B5.png?Expires=1651306000&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=m3zMRO87TLbn8YWtHHfC8W4IPRI%3D&versionId=CAEQHRiBgICSi5XlgxgiIGI1OWQwYmMxMWI5OTRhNzE4YmJmMjEyZDJiOGViOThh)
 
 - 使用React
 
