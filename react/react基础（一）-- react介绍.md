@@ -20,7 +20,7 @@
 1. 原生JavaScript操作DOM繁琐、效率低（DOM-API操作UI）。
 2. 使用JavaScript直接操作DOM，浏览器会进行大量的重绘重排。
 3. 原生JavaScript没有组件化编码方案，代码复用率低
-4. 
+
 ## 4、React的特点
 
 1. 采用组件化模式、声名式编码，提高开发效率及组件复用率。（与声名式对应的就是命令式编码操作。直接操作DOM就是命令式编码）
@@ -29,7 +29,7 @@
 4. 单向数据流
 - 不使用React
 
-  ![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E4%BD%BF%E7%94%A8react%E7%9A%84%E6%83%85%E5%86%B5.png?Expires=1651117815&OSSAccessKeyId=TMP.3KdPGs9eyfp1x8jbNccCgWEUsYnp25cJS7SQCNBW3hghEJe2w783Wp8earitkf9CLWrEbXcQ6Xgf7weioyraQqj8NwY7Gt&Signature=GyPuy4LH8uo%2F6YqGpYzw4r5d5SU%3D&versionId=CAEQHRiBgMDZj6a4gxgiIGUzYTQ4OTJjMmU2NTQ0ZmZiZTNlMGNjN2RhMWYyZDBm)
+  ![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E4%BD%BF%E7%94%A8react%E7%9A%84%E6%83%85%E5%86%B5.png?Expires=1651305545&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=ADx6CxtM0zibnhTcbTFBseOEKKM%3D&versionId=CAEQHRiBgMDZj6a4gxgiIGUzYTQ4OTJjMmU2NTQ0ZmZiZTNlMGNjN2RhMWYyZDBm)
 
 - 使用React
 
