@@ -315,7 +315,7 @@ class Count extends React.Component {
         ReactDOM.render(<Count />, document.getElementById('test'));
 ```
 
-验证结果：
+验证结果：  
 ![组件forceUpdate流程](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E7%BB%84%E4%BB%B6forceUpdate%E6%B5%81%E7%A8%8B.png?Expires=1651418308&OSSAccessKeyId=TMP.3KgvhCFZZSmzq5QQq3ryaCqkAXrRyugLy9JNicBndPn1Rdbato2Sdy4aYTQvxWZyxxgeUxHWajQyC7ZhxaMaTacRBSHzT3&Signature=LaooK74CZraqRdfGjMxtM%2FQCzV0%3D&versionId=CAEQHRiBgMDH0vP_gxgiIDc1ODAzOGEwY2VmODRhOGI4ZGI2ZmM1NDQ1Yzg2NzE5)
 
 ## 5、生命周期（旧）父组件render流程 
