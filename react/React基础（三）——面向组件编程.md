@@ -3,7 +3,7 @@
 
 ## 1、安装插件  
 
-![react developer tools插件](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/react%20developer%20tools%E6%8F%92%E4%BB%B6.png?Expires=1651372129&OSSAccessKeyId=TMP.3KfNT7MvcaB4FbDQtrM23vHkbL6b6qKp9wu5zKiaafStZnPhoeKzksLjhMM6hzaEwLQ87CYSeJSoDRwixf5mvUxkEX31wk&Signature=fTX%2FeW1fSesEBHlMbeuKgPsVkNg%3D&versionId=CAEQHRiBgMC8_7jtgxgiIGY1MzdhOWZmZDU0MzQzYzc5M2RiYmEwYWQxNTllMzA0)  
+![react developer tools插件](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/react%20developer%20tools%E6%8F%92%E4%BB%B6.png?Expires=1651387205&OSSAccessKeyId=TMP.3KfNT7MvcaB4FbDQtrM23vHkbL6b6qKp9wu5zKiaafStZnPhoeKzksLjhMM6hzaEwLQ87CYSeJSoDRwixf5mvUxkEX31wk&Signature=UousS3qDrf%2Fi6Cb%2FBklSE%2FQNVtM%3D&versionId=CAEQHRiBgMC8_7jtgxgiIGY1MzdhOWZmZDU0MzQzYzc5M2RiYmEwYWQxNTllMzA0)  
 
 ## 2、插件图标状态  
 
@@ -191,7 +191,7 @@ MyComponent的实例对象 <=> MyComponent组件实例对象。因为在渲染�
 
 我们要使用state完成以下效果，点击`h1`切换文字。
 
-![](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/state%E6%A1%88%E4%BE%8B.gif?Expires=1651372225&OSSAccessKeyId=TMP.3KfNT7MvcaB4FbDQtrM23vHkbL6b6qKp9wu5zKiaafStZnPhoeKzksLjhMM6hzaEwLQ87CYSeJSoDRwixf5mvUxkEX31wk&Signature=9Kz4N22mCJfgIVE5%2Fy0ppyrGWeA%3D&versionId=CAEQHRiBgMCnw_r0gxgiIGNlNjVmNmRlOTA3YTQxNWRiYjE2Mzg5ZTUyMTRiMTI5)
+![state案例](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/state%E6%A1%88%E4%BE%8B.gif?Expires=1651387285&OSSAccessKeyId=TMP.3KfNT7MvcaB4FbDQtrM23vHkbL6b6qKp9wu5zKiaafStZnPhoeKzksLjhMM6hzaEwLQ87CYSeJSoDRwixf5mvUxkEX31wk&Signature=Ff890IlxcaGtNtvg%2FmihHtMICUI%3D&versionId=CAEQHRiBgMCnw_r0gxgiIGNlNjVmNmRlOTA3YTQxNWRiYjE2Mzg5ZTUyMTRiMTI5)
 
 首先第一步就是初始化state中的数据。需要使用`constructor`来进行state的初始化。  
 
@@ -435,7 +435,7 @@ setState总结
 - 年龄为字符串类型，且为数字型，默认值为18
 
 效果图：
-![props案例](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/props%E6%A1%88%E4%BE%8B.png?Expires=1651382187&OSSAccessKeyId=TMP.3KfNT7MvcaB4FbDQtrM23vHkbL6b6qKp9wu5zKiaafStZnPhoeKzksLjhMM6hzaEwLQ87CYSeJSoDRwixf5mvUxkEX31wk&Signature=%2F1WQIw6%2FIEqBcFMnLYxwFCXE4yc%3D&versionId=CAEQHRiBgMCs26r3gxgiIDE1ZWU2NmYxOTcwZjQzMGE4ZmZlYmY1NmFkZTBhNDNk)
+![props案例](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/props%E6%A1%88%E4%BE%8B.png?Expires=1651387348&OSSAccessKeyId=TMP.3KfNT7MvcaB4FbDQtrM23vHkbL6b6qKp9wu5zKiaafStZnPhoeKzksLjhMM6hzaEwLQ87CYSeJSoDRwixf5mvUxkEX31wk&Signature=a55thYVPqcrJkzy%2B4gMNxpb08BA%3D&versionId=CAEQHRiBgMCs26r3gxgiIDE1ZWU2NmYxOTcwZjQzMGE4ZmZlYmY1NmFkZTBhNDNk)
 
 ### （1）props基本使用
 
@@ -897,7 +897,7 @@ React.createRef调用后可以返回一个容器，该容器可以存储被ref�
 我们将要运用受控组件和函数柯里化等知识去实现这样一个案例：
 要求：定义一个包含表单的组件。输入用户名和密码后，点击登录提示输入信息
 
-效果图：
+效果图：  
 ![收集表单数据的案例](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E6%94%B6%E9%9B%86%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE%E7%9A%84%E6%A1%88%E4%BE%8B.gif?Expires=1651385822&OSSAccessKeyId=TMP.3KfNT7MvcaB4FbDQtrM23vHkbL6b6qKp9wu5zKiaafStZnPhoeKzksLjhMM6hzaEwLQ87CYSeJSoDRwixf5mvUxkEX31wk&Signature=g3MPAqnI0hLhA%2BuEXMkM41H5Ox4%3D&versionId=CAEQHRiBgMDp0Jn4gxgiIGI4ZmRjNGQwOTM5MDQ4NzQ4YmQxMzJjOTk3MTY3YjNh)
 
 首先我们要知道什么是受控组件什么是非受控组件。  
