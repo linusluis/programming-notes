@@ -168,7 +168,7 @@ class Count extends React.Component {
         ReactDOM.render(<Count />, document.getElementById('test'));
 ```
 
-验证结果：
+验证结果：  
 ![组件挂载时流程](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E7%BB%84%E4%BB%B6%E6%8C%82%E8%BD%BD%E6%B5%81%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C.png?Expires=1651418275&OSSAccessKeyId=TMP.3KgvhCFZZSmzq5QQq3ryaCqkAXrRyugLy9JNicBndPn1Rdbato2Sdy4aYTQvxWZyxxgeUxHWajQyC7ZhxaMaTacRBSHzT3&Signature=PLxPRZ6odqiY0Sp%2Ftje57wWO2lQ%3D&versionId=CAEQHRiBgMCC0vP_gxgiIDFkOGY2YmNhODZkNjRjZmRiMTFiOTU2ZTQyNTQwMmM0)
 
 ## 3、生命周期（旧）setState流程
@@ -326,7 +326,7 @@ class Count extends React.Component {
 `componentWillReceiveProps()`这个钩子的意思是：组件将要接收新的props钩子，这个钩子有一个坑，父组件第一次渲染，子组件第一次接收属性是不执行的。之后更新接收新的值才会执行。
 
 先看案例效果：  
-![关于父子组件的案例]()
+![关于父子组件的案例](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E7%88%B6%E7%BB%84%E4%BB%B6%E4%B8%8E%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E6%A1%88%E4%BE%8B.png?Expires=1651419098&OSSAccessKeyId=TMP.3KgvhCFZZSmzq5QQq3ryaCqkAXrRyugLy9JNicBndPn1Rdbato2Sdy4aYTQvxWZyxxgeUxHWajQyC7ZhxaMaTacRBSHzT3&Signature=mg1jRiWXtJSlH7KvrBbfcLBBjdE%3D&versionId=CAEQHRiBgIDY0_P_gxgiIDIzNDA4ZWEzMWMyNDRlZDJiZDMyYTdkZTIwOTdjMDhm)
 
 代码示例：
 ```javascript
@@ -393,7 +393,7 @@ class Count extends React.Component {
 ```
 
 验证结果：
-![父组件render流程]()
+![父组件render流程](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E7%88%B6%E7%BB%84%E4%BB%B6render%E6%B5%81%E7%A8%8B.png?Expires=1651419115&OSSAccessKeyId=TMP.3KgvhCFZZSmzq5QQq3ryaCqkAXrRyugLy9JNicBndPn1Rdbato2Sdy4aYTQvxWZyxxgeUxHWajQyC7ZhxaMaTacRBSHzT3&Signature=fSkH23hXIZX4bRMZae5SxHj38K0%3D&versionId=CAEQHRiBgIC11PP_gxgiIDAxZWE5YWNmYWE4OTQ0MWNhY2VlMDcxMTI5ZTE5YWNl)
 
 
 
