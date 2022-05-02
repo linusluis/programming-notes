@@ -22,9 +22,6 @@ tsconfig.json是一个JSON文件，添加配置文件后，只需tsc命令即可
 > "include":["src/**/*","tests/**/*"]
 > ```
 > - 上述示例中，所有src目录和tests目录下的文件都会被编译
-- exclude
-- extends
-- files
 
 2. exclude
 > - 不需要被编译的文件目录，一般不需要设置
