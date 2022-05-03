@@ -28,7 +28,7 @@ react提供了一个用于创建react项目的脚手架库: create-react-app 项
 
 ## 4、脚手架的文件结构
 
-![脚手架的文件结构]()
+![脚手架的文件结构](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E8%84%9A%E6%89%8B%E6%9E%B6%E7%9A%84%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84.png?Expires=1651562244&OSSAccessKeyId=TMP.3KkF7HmnjGLLU6WjcUPxRguNC5X47w9qF26VZh1ZiDBibkZBmQMobdb4DjMDh6djvunX14h9X5SoAGnt8F7KvGJebjjGXA&Signature=KUsr%2Bo5xrjnwYpwq%2FZ9uY%2B%2BZrus%3D&versionId=CAEQHRiBgICf36CihBgiIGI2ZGFkOThjZjMwYjQyYjRhMDAxNTEzMThlOGU4MzRi)
 
 下面我们介绍一些主要的文件
 
