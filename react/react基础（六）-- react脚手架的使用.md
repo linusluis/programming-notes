@@ -116,7 +116,7 @@ reportWebVitals();
 
 执行src下的index.js（入口文件）,引入react核心库，reactDOM，引入样式，引入App组件（App组件中引入的是自己写的组件）===>触发ReactDOM.render。把App组件渲染到root容器。然后public中执行到index.html，找到root节点，渲染到界面。
 
-## 6、功能界面的组件化编码流程（通用）** 非常重要 **
+## 6、功能界面的组件化编码流程（通用） 非常重要 
 
 1. 拆分组件：拆分界面，抽取组件
 2. 实现静态组件：使用组件实现静态页面效果
