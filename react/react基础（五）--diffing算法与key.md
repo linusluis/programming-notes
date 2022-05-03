@@ -32,7 +32,8 @@ class Time extends React.Component {
         ReactDOM.render(<Time/>, document.getElementById('test'));
 ```
 
-验证结果：
+验证结果：  
+
 ![验证diffing算法](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E9%AA%8C%E8%AF%81diffing%E7%AE%97%E6%B3%95.gif?Expires=1651560801&OSSAccessKeyId=TMP.3KkF7HmnjGLLU6WjcUPxRguNC5X47w9qF26VZh1ZiDBibkZBmQMobdb4DjMDh6djvunX14h9X5SoAGnt8F7KvGJebjjGXA&Signature=XGcJqbChyWHDgbrT3KA6DheclTs%3D&versionId=CAEQHRiBgMCRtvGhhBgiIDI4NjYzMWMwYWIzODQxZDZiMzIzNzk1MmEwYzc5MjA0)
 
 理解：由于定时器中更新了state中的数据，所以会一遍一边的调用render，调用一次render会形成新的虚拟DOM树，然后会与前一次生成的虚拟DOM树进行比较。对比过程中发现h1还是之前的h1，input还是之前的input。所以说h1和input对应的真实DOM在页面上没有发生变化。经过比较，还是直接放在页面上。而变的是span标签。
@@ -41,7 +42,8 @@ Diffing算法不是对比一层，而是逐层对比，对比最小的力度是�
 
 如果不变，则证明Diffing算法对比不是对比一层，而是逐层对比。
 
-验证结果：
+验证结果：  
+
 ![验证diffing算法2](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E9%AA%8C%E8%AF%81diffing%E7%AE%97%E6%B3%952.gif?Expires=1651560817&OSSAccessKeyId=TMP.3KkF7HmnjGLLU6WjcUPxRguNC5X47w9qF26VZh1ZiDBibkZBmQMobdb4DjMDh6djvunX14h9X5SoAGnt8F7KvGJebjjGXA&Signature=T9K7k3w70aNJR6sTNfpbu1GpQZQ%3D&versionId=CAEQHRiBgICxtfGhhBgiIDM0NDBlNzI1NDU3ZTQ1NTI4MTFjMWU5NTg1MWY1NTgx)
 
 
@@ -116,11 +118,13 @@ Diffing算法不是对比一层，而是逐层对比，对比最小的力度是�
         ReactDOM.render(<Person />,document.getElementById('test'));
 ```
 
-效果展示：
+效果展示：  
+
 ![key的作用1](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/key%E7%9A%84%E4%BD%9C%E7%94%A81.gif?Expires=1651560838&OSSAccessKeyId=TMP.3KkF7HmnjGLLU6WjcUPxRguNC5X47w9qF26VZh1ZiDBibkZBmQMobdb4DjMDh6djvunX14h9X5SoAGnt8F7KvGJebjjGXA&Signature=a9FaI7P%2FyQhXWxmOWzLmn4DXzpc%3D&versionId=CAEQHRiBgIDHtvGhhBgiIDkwMTM0OGE0YmFkMzQ4YWNhNTVkNGMwMTNlZWU2NDdi)
 
 通过上面案例，我们发现无论是使用index作为key，还是使用id作为key，实现的效果是一样的。
-但是考虑到性能，就大有不同了。使用index作为key，每次更新state的时候，每个人的index都更新了，key也就更新了。这导致进行diffing比较的时候，虚拟DOM有变化，生成新的真实DOM，替换原来的之前DOM。而使用id作为key则不会，这在效率和性能上有很大的不同。如下两图：
+但是考虑到性能，就大有不同了。使用index作为key，每次更新state的时候，每个人的index都更新了，key也就更新了。这导致进行diffing比较的时候，虚拟DOM有变化，生成新的真实DOM，替换原来的之前DOM。而使用id作为key则不会，这在效率和性能上有很大的不同。如下两图：  
+
 ![使用index作为key](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E4%BD%BF%E7%94%A8index%E4%BD%9Ckey.png?Expires=1651560865&OSSAccessKeyId=TMP.3KkF7HmnjGLLU6WjcUPxRguNC5X47w9qF26VZh1ZiDBibkZBmQMobdb4DjMDh6djvunX14h9X5SoAGnt8F7KvGJebjjGXA&Signature=VYosuqsdVxR6MTwIkExiVAFjKN8%3D&versionId=CAEQHRiBgIDItvGhhBgiIDVjNTJkZjczN2ZmODRjZDZiMjg0NDZhMmUwNWQ2YTM4)
 
 ![使用id作为key](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E4%BD%BF%E7%94%A8id%E4%BD%9C%E4%B8%BAkey.png?Expires=1651560875&OSSAccessKeyId=TMP.3KkF7HmnjGLLU6WjcUPxRguNC5X47w9qF26VZh1ZiDBibkZBmQMobdb4DjMDh6djvunX14h9X5SoAGnt8F7KvGJebjjGXA&Signature=drq%2FwTYHwQiRdQ8yOX6gOL6dfp4%3D&versionId=CAEQHRiBgICStvGhhBgiIGY4ZmM4M2Q1OTUyNjQ2NzU4ZDA0NTJmNTQ0OTJkMzc2)
@@ -131,7 +135,8 @@ Diffing算法不是对比一层，而是逐层对比，对比最小的力度是�
 
 代码就沿用上面代码，稍作改动即可。
 
-效果图：
+效果图：  
+
 ![key的作用2](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/key%E7%9A%84%E4%BD%9C%E7%94%A82.gif?Expires=1651560894&OSSAccessKeyId=TMP.3KkF7HmnjGLLU6WjcUPxRguNC5X47w9qF26VZh1ZiDBibkZBmQMobdb4DjMDh6djvunX14h9X5SoAGnt8F7KvGJebjjGXA&Signature=sQPv1dxW9ojazCB%2BEocZM%2F6fAIc%3D&versionId=CAEQHRiBgMCZt_GhhBgiIDI0YWI3YWQ0NTQ5YjQ5NGJhYWM4ODgwNmUxODViYzBi)
 
 
