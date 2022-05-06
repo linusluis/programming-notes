@@ -29,11 +29,11 @@
 4. 单向数据流
 - 不使用React
 
-  ![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E4%B8%8D%E4%BD%BF%E7%94%A8react%E7%9A%84%E6%83%85%E5%86%B5.png?Expires=1651306000&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=m3zMRO87TLbn8YWtHHfC8W4IPRI%3D&versionId=CAEQHRiBgICSi5XlgxgiIGI1OWQwYmMxMWI5OTRhNzE4YmJmMjEyZDJiOGViOThh)
+  ![不使用react的情况](https://gitee.com/Jeren/cloudimages/raw/master/img/不使用react的情况.png)
 
 - 使用React
 
-  ![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E4%BD%BF%E7%94%A8react%E7%9A%84%E6%83%85%E5%86%B5.png?Expires=1651117883&OSSAccessKeyId=TMP.3KdPGs9eyfp1x8jbNccCgWEUsYnp25cJS7SQCNBW3hghEJe2w783Wp8earitkf9CLWrEbXcQ6Xgf7weioyraQqj8NwY7Gt&Signature=YrI3lMBviaCbDMp9%2Fe9Nmt6wj7w%3D&versionId=CAEQHRiBgMDZj6a4gxgiIGUzYTQ4OTJjMmU2NTQ0ZmZiZTNlMGNjN2RhMWYyZDBm)
+  ![使用react的情况](https://gitee.com/Jeren/cloudimages/raw/master/img/使用react的情况.png)
   
   ## 5、学习React之前要掌握的js基础知识
 
