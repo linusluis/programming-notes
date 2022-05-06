@@ -9,7 +9,7 @@
 
 效果图：  
 
-![引出组件生命周期](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E5%BC%95%E5%87%BA%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.gif?Expires=1651418148&OSSAccessKeyId=TMP.3KgvhCFZZSmzq5QQq3ryaCqkAXrRyugLy9JNicBndPn1Rdbato2Sdy4aYTQvxWZyxxgeUxHWajQyC7ZhxaMaTacRBSHzT3&Signature=u55UBCRlXzFBMk01v8WrKxCmTDA%3D&versionId=CAEQHRiBgMCmxp75gxgiIDEyYTUwMGY4ZDljNTRkN2FiY2I1MGEzZjM1OTkxZmNk)
+![引出组件生命周期](https://gitee.com/Jeren/cloudimages/raw/master/img/引出组件生命周期.gif)
 
 ## 1、对生命周期的简单理解
 
@@ -106,16 +106,16 @@ React组件从中包含一系列钩子函数（生命周期回调函数），会
 
 效果图：
 
-![生命周期流程案例](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90%E6%A1%88%E4%BE%8B.gif?Expires=1651418193&OSSAccessKeyId=TMP.3KgvhCFZZSmzq5QQq3ryaCqkAXrRyugLy9JNicBndPn1Rdbato2Sdy4aYTQvxWZyxxgeUxHWajQyC7ZhxaMaTacRBSHzT3&Signature=B8%2Brp25bNPCwnaa8ZSiL%2F8xw3Jg%3D&versionId=CAEQHRiBgMDK1PP_gxgiIDI1MzhhMTE2NzBhZjQwZGI5Yjc2ZGE2MDIwNDU0MDRj)
+![生命周期流程案例](https://gitee.com/Jeren/cloudimages/raw/master/img/生命周期流程分析案例.gif)
 
 
 ## 1、生命周期流程图（旧）
 
-![生命周期流程图](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%B5%81%E7%A8%8B%E5%9B%BE.png?Expires=1651418227&OSSAccessKeyId=TMP.3KgvhCFZZSmzq5QQq3ryaCqkAXrRyugLy9JNicBndPn1Rdbato2Sdy4aYTQvxWZyxxgeUxHWajQyC7ZhxaMaTacRBSHzT3&Signature=Jwg3E1LFUYDuPCOg7Jb9vwwEtwg%3D&versionId=CAEQHRiBgID50vP_gxgiIDc1NjRjOTJiYjhhMTRlMTQ4ZDkxZjU3MmNjYTUwZWFj)
+![生命周期流程图](https://gitee.com/Jeren/cloudimages/raw/master/img/组件生命周期流程图.png)
 
 下下面将从旧的生命周期流程这四条路线进行分析
 
-![生命周期流程案例划分](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%B5%81%E7%A8%8B%E5%9B%BE%E5%88%92%E5%88%86.png?Expires=1651418243&OSSAccessKeyId=TMP.3KgvhCFZZSmzq5QQq3ryaCqkAXrRyugLy9JNicBndPn1Rdbato2Sdy4aYTQvxWZyxxgeUxHWajQyC7ZhxaMaTacRBSHzT3&Signature=v0rzgogZgwEPeBvt15sDZv2bGCw%3D&versionId=CAEQHRiBgICF0_P_gxgiIGMyOTMxOWQ5MjdhMzQ2ZWU4NTA3NDYxMGFlMmFmNDgy)
+![生命周期流程案例划分](https://gitee.com/Jeren/cloudimages/raw/master/img/组件生命周期流程图划分.png)
 
 
 ## 2、生命周期（旧）组件挂载流程
@@ -169,7 +169,7 @@ class Count extends React.Component {
 ```
 
 验证结果：  
-![组件挂载时流程](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E7%BB%84%E4%BB%B6%E6%8C%82%E8%BD%BD%E6%B5%81%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C.png?Expires=1651418275&OSSAccessKeyId=TMP.3KgvhCFZZSmzq5QQq3ryaCqkAXrRyugLy9JNicBndPn1Rdbato2Sdy4aYTQvxWZyxxgeUxHWajQyC7ZhxaMaTacRBSHzT3&Signature=PLxPRZ6odqiY0Sp%2Ftje57wWO2lQ%3D&versionId=CAEQHRiBgMCC0vP_gxgiIDFkOGY2YmNhODZkNjRjZmRiMTFiOTU2ZTQyNTQwMmM0)
+![组件挂载时流程](https://gitee.com/Jeren/cloudimages/raw/master/img/组件挂载流程的执行结果.png)
 
 ## 3、生命周期（旧）setState流程
 
@@ -238,7 +238,7 @@ class Count extends React.Component {
         ReactDOM.render(<Count />, document.getElementById('test'));
 ```
 验证结果：
-![组件setState流程](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E7%BB%84%E4%BB%B6setState%E6%B5%81%E7%A8%8B.png?Expires=1651418292&OSSAccessKeyId=TMP.3KgvhCFZZSmzq5QQq3ryaCqkAXrRyugLy9JNicBndPn1Rdbato2Sdy4aYTQvxWZyxxgeUxHWajQyC7ZhxaMaTacRBSHzT3&Signature=n%2Bc7SBs%2FtpLUJBYkSklOnFSQuN8%3D&versionId=CAEQHRiBgIDv0vP_gxgiIDc1ZmJiMGM2Mjk1YTQ0MmY4NzZjNTNhMzkyYjA2YWZk)
+![组件setState流程](https://gitee.com/Jeren/cloudimages/raw/master/img/组件setState流程.png)
 
 ## 4、生命周期（旧）forceUpdate流程
 
@@ -316,7 +316,7 @@ class Count extends React.Component {
 ```
 
 验证结果：  
-![组件forceUpdate流程](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E7%BB%84%E4%BB%B6forceUpdate%E6%B5%81%E7%A8%8B.png?Expires=1651418308&OSSAccessKeyId=TMP.3KgvhCFZZSmzq5QQq3ryaCqkAXrRyugLy9JNicBndPn1Rdbato2Sdy4aYTQvxWZyxxgeUxHWajQyC7ZhxaMaTacRBSHzT3&Signature=LaooK74CZraqRdfGjMxtM%2FQCzV0%3D&versionId=CAEQHRiBgMDH0vP_gxgiIDc1ODAzOGEwY2VmODRhOGI4ZGI2ZmM1NDQ1Yzg2NzE5)
+![组件forceUpdate流程](https://gitee.com/Jeren/cloudimages/raw/master/img/组件forceUpdate流程.png)
 
 ## 5、生命周期（旧）父组件render流程 
 
@@ -326,7 +326,7 @@ class Count extends React.Component {
 `componentWillReceiveProps()`这个钩子的意思是：组件将要接收新的props钩子，这个钩子有一个坑，父组件第一次渲染，子组件第一次接收属性是不执行的。之后更新接收新的值才会执行。
 
 先看案例效果：  
-![关于父子组件的案例](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E7%88%B6%E7%BB%84%E4%BB%B6%E4%B8%8E%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E6%A1%88%E4%BE%8B.png?Expires=1651419098&OSSAccessKeyId=TMP.3KgvhCFZZSmzq5QQq3ryaCqkAXrRyugLy9JNicBndPn1Rdbato2Sdy4aYTQvxWZyxxgeUxHWajQyC7ZhxaMaTacRBSHzT3&Signature=mg1jRiWXtJSlH7KvrBbfcLBBjdE%3D&versionId=CAEQHRiBgIDY0_P_gxgiIDIzNDA4ZWEzMWMyNDRlZDJiZDMyYTdkZTIwOTdjMDhm)
+![关于父子组件的案例](https://gitee.com/Jeren/cloudimages/raw/master/img/父组件与子组件的案例.png)
 
 代码示例：
 ```javascript
@@ -393,7 +393,7 @@ class Count extends React.Component {
 ```
 
 验证结果：
-![父组件render流程](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E7%88%B6%E7%BB%84%E4%BB%B6render%E6%B5%81%E7%A8%8B.png?Expires=1651419115&OSSAccessKeyId=TMP.3KgvhCFZZSmzq5QQq3ryaCqkAXrRyugLy9JNicBndPn1Rdbato2Sdy4aYTQvxWZyxxgeUxHWajQyC7ZhxaMaTacRBSHzT3&Signature=fSkH23hXIZX4bRMZae5SxHj38K0%3D&versionId=CAEQHRiBgIC11PP_gxgiIDAxZWE5YWNmYWE4OTQ0MWNhY2VlMDcxMTI5ZTE5YWNl)
+![父组件render流程](https://gitee.com/Jeren/cloudimages/raw/master/img/父组件render流程.png)
 
 
 
@@ -418,7 +418,7 @@ class Count extends React.Component {
 
 ## 1、新版本生命周期图
 
-![新版本生命周期图](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E6%96%B0%E7%89%88%E6%9C%AC%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE.png?Expires=1651418329&OSSAccessKeyId=TMP.3KgvhCFZZSmzq5QQq3ryaCqkAXrRyugLy9JNicBndPn1Rdbato2Sdy4aYTQvxWZyxxgeUxHWajQyC7ZhxaMaTacRBSHzT3&Signature=BYwrQnLAH5AC1eTo3qYW7L90VDw%3D&versionId=CAEQHRiBgMDV1vP_gxgiIGM5YWY3YjI1NmVlNDQ1MmU4NGY2ZWM1ZjUyMWRlYzJi)
+![新版本生命周期图](https://gitee.com/Jeren/cloudimages/raw/master/img/新版本生命周期图.png)
 
 ## 2、新旧版本生命周期对比
 
@@ -495,7 +495,7 @@ class Count extends React.Component {
 ```
 
 验证结果：
-![新版本生命周期挂载流程](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E6%96%B0%E7%89%88%E6%9C%AC%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%8C%82%E8%BD%BD%E6%B5%81%E7%A8%8B.png?Expires=1651418346&OSSAccessKeyId=TMP.3KgvhCFZZSmzq5QQq3ryaCqkAXrRyugLy9JNicBndPn1Rdbato2Sdy4aYTQvxWZyxxgeUxHWajQyC7ZhxaMaTacRBSHzT3&Signature=98hUaP45MN%2BpoVZBJNbLGbptLOo%3D&versionId=CAEQHRiBgMC91PP_gxgiIDQ2YmU1YmY5NmRlODRkNTI4MjkwNGQzZTgwZDU4YmM1)
+![新版本生命周期挂载流程](https://gitee.com/Jeren/cloudimages/raw/master/img/新版本生命周期挂载流程.png)
 
 ## 4、新版本生命周期更新流程
 
@@ -567,7 +567,7 @@ class Count extends React.Component {
 ```
 
 验证结果：
-![新版本生命周期更新流程](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E6%96%B0%E7%89%88%E6%9C%AC%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B.png?Expires=1651418368&OSSAccessKeyId=TMP.3KgvhCFZZSmzq5QQq3ryaCqkAXrRyugLy9JNicBndPn1Rdbato2Sdy4aYTQvxWZyxxgeUxHWajQyC7ZhxaMaTacRBSHzT3&Signature=rIIL65qtVHRNRFLmBFSAZkYq3yw%3D&versionId=CAEQHRiBgMDC1PP_gxgiIDcyYjVlM2YwOWViNzRmMzFiNDA0YzNmOTBmYTBmNGFm)
+![新版本生命周期更新流程](https://gitee.com/Jeren/cloudimages/raw/master/img/新版本生命周期更新流程.png)
 
 ## 5、`getSnapshotBeforeUpdate`举例
 
