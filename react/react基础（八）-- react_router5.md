@@ -52,7 +52,7 @@ react-router有三种实现，分别给三种平台去用：第一个就是web�
 
 使用路由完成如下案例
 
-![路由的案例]()
+![路由的案例](https://gitee.com/Jeren/cloudimages/raw/master/img/路由的基本使用.gif)
 
 ## 1、准备工作
 
@@ -234,7 +234,7 @@ NavLink可代替Link实现路由链接高亮的效果
 <NavLink activeClassName='demo' className ='list-group-item a' to='/home'>Home</NavLink>
 ```
 这样就实现了点击高亮的效果。
-![点击路由组件高亮效果]()
+![点击路由组件高亮效果](https://gitee.com/Jeren/cloudimages/raw/master/img/路由高亮.png)
 
 # 五、封装NavLink组件
 
@@ -283,7 +283,7 @@ export default class MyNavLink extends Component {
 <Route path="/home" component={Home}></Route>
 <Route path="/home" component={Test}></Route>
 ```
-![Switch的使用1]()
+![Switch的使用1](https://gitee.com/Jeren/cloudimages/raw/master/img/Switch的使用.png)
 
 那么我们只想让同一个路径匹配的多个组件只生效一个，我们可以使用`Switch`组件  
 
@@ -303,7 +303,7 @@ export default class MyNavLink extends Component {
 ```
 
 这样就只生效一个Home组件了。
-![Switch的使用2]()
+![Switch的使用2](https://gitee.com/Jeren/cloudimages/raw/master/img/Switch的使用2.png)
 
 switch小总结：
 1. 通常情况下，path和component是一一对应的关系
@@ -325,8 +325,8 @@ switch小总结：
 ```
 这样写第一次进入页面没有什么样式问题，但是刷新之后，样式就会消失了  
 
-![样式丢失问题]()
- 
+![样式丢失问题](https://gitee.com/Jeren/cloudimages/raw/master/img/样式丢失问题.png)
+
 原因是因为在刷新之前样式的加载路径是这样的：`Request URL: http://localhost:3000/css/bootstrap.css`，这个地址是能够成功请求到bootstap的。
 
 刷新之后呢，会发现样式的加载路径是这样的：`Request URL:http://localhost:3000/avepoint/css/bootstrap.css`。会默认为/avepoint也是路径的一部。如果请求了不存在的资源。就会用public/index.html兜底，所以样式会消失，进显示index.html
@@ -377,7 +377,7 @@ switch小总结：
 <Route path="/home" component={Home}></Route>
 ```
 
-![模糊匹配]()
+![模糊匹配](https://gitee.com/Jeren/cloudimages/raw/master/img/模糊匹配.png)
 ## 2、严格匹配
 
 严格匹配要求编写的路由链接和注册路由的路径需要一模一样
@@ -394,7 +394,7 @@ switch小总结：
 </Switch>
 ```
 
-![严格匹配]()
+![严格匹配](https://gitee.com/Jeren/cloudimages/raw/master/img/严格匹配.png)
 
 ## 3、模糊匹配与严格匹配小总结
 
@@ -424,7 +424,7 @@ import { Switch, Route ,Redirect} from 'react-router-dom';
 
 ### （1）使用嵌套路由要完成的效果
 
-![嵌套路由的效果]()
+![嵌套路由的效果](https://gitee.com/Jeren/cloudimages/raw/master/img/嵌套路由的实现案例.gif)
 
 ### （2）思路
 
@@ -518,7 +518,7 @@ export default class Home extends Component {
 
 若想完成案例需要在`src/pages/Home/Message`文件夹下新建Detail文件夹。
 
-![向路由组件传递参数的案例]()
+![向路由组件传递参数的案例](https://gitee.com/Jeren/cloudimages/raw/master/img/传递参数的案例.gif)
 
 ## 1、向路由组件传递params参数
 
