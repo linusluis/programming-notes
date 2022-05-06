@@ -20,7 +20,7 @@
 
 ## 3、redux原理图
 
-![redux原理图](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/redux%E5%8E%9F%E7%90%86%E5%9B%BE.png?Expires=1651163309&OSSAccessKeyId=TMP.3Kj3La7W1Xn9SJhLxq6CqSFaCwnoZjNjTrEeogGp7Yew9npREFEKMDgvgKfRetQzShwsCWiP3GsVryodqGM2q7gUSXWpFF&Signature=VE7PSlhS4YwJo3tsu8897gcMpjs%3D&versionId=CAEQHRiBgICtopLDgxgiIDAyZjkyZDgyODI5OTQwMWI5YWQzY2Y5YjYwYmI1MDg3)
+![redux原理图](https://gitee.com/Jeren/cloudimages/raw/master/img/redux原理图.png)
 
 ## 4、redux的三个概念
 
@@ -63,7 +63,7 @@ const store = createStore(reducer);
 
 效果图：
 
-![redux案例]()
+![redux案例](https://gitee.com/Jeren/cloudimages/raw/master/img/redux案例.gif)
 
 
 - `src/index.js`
@@ -617,7 +617,7 @@ export const createIncrementAsyncAction = (data,time)=>{
 
 ## （2）react-redux原理图
 
-![react-redux原理图]()
+![react-redux原理图](https://gitee.com/Jeren/cloudimages/raw/master/img/react-redux原理图.png)
 
 ## （3）react-redux将所有组件分成两大类
 
@@ -812,7 +812,6 @@ export default function countReducer(prevState=initState,action){
 ```
 
 ## 5、react-redux求和案例优化
-
 
 
 
