@@ -16,7 +16,7 @@
 
 第一次使用react，当然是要完成helloreact的效果啦，效果图：
 
-![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/Hello_react.png?Expires=1651306487&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=mj4D83l5gYty8tJsMzvYPE9bOvo%3D&versionId=CAEQHRiBgMCF3LS4gxgiIDZlMzFiYzY3MTZhNzRkNWRiZGRiNjFhNzIyN2RiNTM4)
+![image.png](https://gitee.com/Jeren/cloudimages/raw/master/img/Hello_react.png)
 
  
 
@@ -133,7 +133,7 @@ react依赖包结构:
 
 要求动态展示如下列表
 
-![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/jsx%E7%9A%84%E5%B0%8F%E7%BB%83%E4%B9%A0.png?Expires=1651337622&OSSAccessKeyId=TMP.3KhmuNrcrscbg2KdxByauNAAXsoszbJJ8xHPyM2cRaw7N5KPK2XKkL1imNjxptEk9wTdPbM6bhA534cYVWTv7EaU4rueiG&Signature=Ww3DyaP3HY0SsxOoYVWTZMRt06k%3D&versionId=CAEQHRiBgICH1NrsgxgiIGEzYTFhMzk3ZGQ0ZDQ4MjdhMzkxMjliZDYwOTYxNzc3)
+![image.png](https://gitee.com/Jeren/cloudimages/raw/master/img/jsx的小练习.png)
 
 代码实现：
 ```html
@@ -198,7 +198,7 @@ react依赖包结构:
 为什么要用组件：一个界面的功能更复杂  
 作用：复用编码，简化项目编码，提高运行效率  
 
-![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E7%BB%84%E4%BB%B6.png?Expires=1651337961&OSSAccessKeyId=TMP.3KhmuNrcrscbg2KdxByauNAAXsoszbJJ8xHPyM2cRaw7N5KPK2XKkL1imNjxptEk9wTdPbM6bhA534cYVWTv7EaU4rueiG&Signature=xFxt7KGHM5KFJE6GbxvhajWYexs%3D&versionId=CAEQHRiBgIDO2.TsgxgiIGVmNTE5MmExMzQ5MDRlOTY5NmE4NTRjYjdiNzc0NTlk)
+![image.png](https://gitee.com/Jeren/cloudimages/raw/master/img/组件.png)
 ### （3）模块化
 
 当应用的js都以模块来编写的，这个应用就是一个模块化的应用  
@@ -207,4 +207,4 @@ react依赖包结构:
 
 当应用是以多组件的方式实现，这个应用就是一个组件化的应用  
 
-![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E7%BB%84%E4%BB%B6%E5%8C%96.png?Expires=1651337988&OSSAccessKeyId=TMP.3KhmuNrcrscbg2KdxByauNAAXsoszbJJ8xHPyM2cRaw7N5KPK2XKkL1imNjxptEk9wTdPbM6bhA534cYVWTv7EaU4rueiG&Signature=unIZJivWkKUotiJlJHHJ8yfwzGA%3D&versionId=CAEQHRiBgMD32.TsgxgiIDk5MGYyMTE4NTA2OTRlNjg5ODk5N2IzZjU3MDFiYjFl)
+![image.png](https://gitee.com/Jeren/cloudimages/raw/master/img/组件化.png)
