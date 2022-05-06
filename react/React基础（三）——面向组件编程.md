@@ -3,7 +3,7 @@
 
 ## 1、安装插件  
 
-![react developer tools插件](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/react%20developer%20tools%E6%8F%92%E4%BB%B6.png?Expires=1651387205&OSSAccessKeyId=TMP.3KfNT7MvcaB4FbDQtrM23vHkbL6b6qKp9wu5zKiaafStZnPhoeKzksLjhMM6hzaEwLQ87CYSeJSoDRwixf5mvUxkEX31wk&Signature=UousS3qDrf%2Fi6Cb%2FBklSE%2FQNVtM%3D&versionId=CAEQHRiBgMC8_7jtgxgiIGY1MzdhOWZmZDU0MzQzYzc5M2RiYmEwYWQxNTllMzA0)  
+![react developer tools插件](https://gitee.com/Jeren/cloudimages/raw/master/img/react_developer_tools插件.png)  
 
 ## 2、插件图标状态  
 
@@ -18,7 +18,7 @@
 >Profiler用于记录网站的一些性能，比如说渲染用了多久，哪一个组件加载的最慢，慢的原因是什么
 ## 4、Components控制台  
 
-![Components控制台](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/Components%E6%8E%A7%E5%88%B6%E5%8F%B0.png?Expires=1651386790&OSSAccessKeyId=TMP.3KfNT7MvcaB4FbDQtrM23vHkbL6b6qKp9wu5zKiaafStZnPhoeKzksLjhMM6hzaEwLQ87CYSeJSoDRwixf5mvUxkEX31wk&Signature=KPcvHnSe0xjKDxmGzCGHL3dd4tA%3D&versionId=CAEQHRiBgMC6ibf4gxgiIDliOTdhMDAzNTQ1YjQ2MWM5OGRkZDM4YjI5Mzg5ZTQx) 
+![Components控制台](https://gitee.com/Jeren/cloudimages/raw/master/img/Components控制台.png) 
 
 - props：是指组件身上的属性
 - rendered by：指的是当前这个组件是由哪个版本的react渲染的  
@@ -191,7 +191,7 @@ MyComponent的实例对象 <=> MyComponent组件实例对象。因为在渲染�
 
 我们要使用state完成以下效果，点击`h1`切换文字。
 
-![state案例](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/state%E6%A1%88%E4%BE%8B.gif?Expires=1651387285&OSSAccessKeyId=TMP.3KfNT7MvcaB4FbDQtrM23vHkbL6b6qKp9wu5zKiaafStZnPhoeKzksLjhMM6hzaEwLQ87CYSeJSoDRwixf5mvUxkEX31wk&Signature=Ff890IlxcaGtNtvg%2FmihHtMICUI%3D&versionId=CAEQHRiBgMCnw_r0gxgiIGNlNjVmNmRlOTA3YTQxNWRiYjE2Mzg5ZTUyMTRiMTI5)
+![state案例](https://gitee.com/Jeren/cloudimages/raw/master/img/state案例.gif)
 
 首先第一步就是初始化state中的数据。需要使用`constructor`来进行state的初始化。  
 
@@ -435,7 +435,7 @@ setState总结
 - 年龄为字符串类型，且为数字型，默认值为18
 
 效果图：
-![props案例](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/props%E6%A1%88%E4%BE%8B.png?Expires=1651387348&OSSAccessKeyId=TMP.3KfNT7MvcaB4FbDQtrM23vHkbL6b6qKp9wu5zKiaafStZnPhoeKzksLjhMM6hzaEwLQ87CYSeJSoDRwixf5mvUxkEX31wk&Signature=a55thYVPqcrJkzy%2B4gMNxpb08BA%3D&versionId=CAEQHRiBgMCs26r3gxgiIDE1ZWU2NmYxOTcwZjQzMGE4ZmZlYmY1NmFkZTBhNDNk)
+![props案例](https://gitee.com/Jeren/cloudimages/raw/master/img/props案例.png)
 
 ### （1）props基本使用
 
@@ -666,7 +666,7 @@ React15.xxx之前，使用React.PropTypes.xxx属性对传递的标签属性进�
 
 效果图：
 
-![refs案例](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/refs%E6%A1%88%E4%BE%8B.gif?Expires=1651384477&OSSAccessKeyId=TMP.3KfNT7MvcaB4FbDQtrM23vHkbL6b6qKp9wu5zKiaafStZnPhoeKzksLjhMM6hzaEwLQ87CYSeJSoDRwixf5mvUxkEX31wk&Signature=mtbTUjhJDxVWlA20Y2z4hVCQsXw%3D&versionId=CAEQHRiBgIDD2_D3gxgiIGI3NWUzZDM0ODkzMjRlNWFiY2NlOWI0YzAxNjYxMjE2)
+![refs案例](https://gitee.com/Jeren/cloudimages/raw/master/img/refs案例.gif)
 
 
 ### （1）字符串形式的ref
@@ -764,7 +764,7 @@ React15.xxx之前，使用React.PropTypes.xxx属性对传递的标签属性进�
 
 如果ref回调函数是以内联函数方式定义的（就是上述方式），**在更新过程中（指render多次调用）**它会被执行两次，第一次传入参数null。然后第二次会传入参数DOM元素。这是因为在每次渲染时会创建一个新的函数实例，所以React清空旧的ref并且设置新的。通过将ref的回调函数定义成class的绑定函数的方式可以避免上述问题，但是大多数情况下它是无关紧要的。因此，在开发中可直接使用内联函数方式调用就行。   
 
-![回调ref的调用次数问题](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E5%9B%9E%E8%B0%83ref%E7%9A%84%E8%B0%83%E7%94%A8%E6%AC%A1%E6%95%B0%E9%97%AE%E9%A2%98.png?Expires=1651385086&OSSAccessKeyId=TMP.3KfNT7MvcaB4FbDQtrM23vHkbL6b6qKp9wu5zKiaafStZnPhoeKzksLjhMM6hzaEwLQ87CYSeJSoDRwixf5mvUxkEX31wk&Signature=BaN1FevzGj%2FnLWESHEl4lGAXu0w%3D&versionId=CAEQHRiBgICInIP4gxgiIDhhMmVhNzU5ZGI5OTQ2NjM4MzMyZmQxMTU1YjI1Nzll)
+![回调ref的调用次数问题](https://gitee.com/Jeren/cloudimages/raw/master/img/回调ref的调用次数问题.png)
 
 使用class绑定函数方式就避免了这个问题，如下面代码。但是这个问题无关紧要
 
@@ -898,7 +898,7 @@ React.createRef调用后可以返回一个容器，该容器可以存储被ref�
 要求：定义一个包含表单的组件。输入用户名和密码后，点击登录提示输入信息
 
 效果图：  
-![收集表单数据的案例](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E6%94%B6%E9%9B%86%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE%E7%9A%84%E6%A1%88%E4%BE%8B.gif?Expires=1651385822&OSSAccessKeyId=TMP.3KfNT7MvcaB4FbDQtrM23vHkbL6b6qKp9wu5zKiaafStZnPhoeKzksLjhMM6hzaEwLQ87CYSeJSoDRwixf5mvUxkEX31wk&Signature=g3MPAqnI0hLhA%2BuEXMkM41H5Ox4%3D&versionId=CAEQHRiBgMDp0Jn4gxgiIGI4ZmRjNGQwOTM5MDQ4NzQ4YmQxMzJjOTk3MTY3YjNh)
+![收集表单数据的案例](https://gitee.com/Jeren/cloudimages/raw/master/img/收集表单数据的案例.gif)
 
 首先我们要知道什么是受控组件什么是非受控组件。  
 
@@ -1059,7 +1059,7 @@ React.createRef调用后可以返回一个容器，该容器可以存储被ref�
 ```
 
 说明：
-![函数柯里化](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/react/react%E5%9F%BA%E7%A1%80/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96.png?Expires=1651386438&OSSAccessKeyId=TMP.3KfNT7MvcaB4FbDQtrM23vHkbL6b6qKp9wu5zKiaafStZnPhoeKzksLjhMM6hzaEwLQ87CYSeJSoDRwixf5mvUxkEX31wk&Signature=Q0JRedRBCSO6prAQ1AiH%2BznCZRs%3D&versionId=CAEQHRiBgMC6uaz4gxgiIDcwM2FkYzQzNzg2ZDQ0OTQ4OTg3OTIzNDhhOGRlN2Vm)
+![函数柯里化](https://gitee.com/Jeren/cloudimages/raw/master/img/函数柯里化.png)
 
 上述代码这部分使用了函数柯里化做了优化，原本是为两个输入框的onChange事件分别绑定saveUsername事件和savePassword属性。但使用了函数柯里化之后，为两个输入框仅绑定一个saveFormData事件，但是能分别处理传入的不同数据。
 之前说事件回调函数中不能传递数据，但是这里传了，是因为将数据传递至saveFormData()函数中，而saveFormData()函数返回值是一个函数，所以这个返回的函数作为onChange的回调函数，所以event参数也是传递给这个saveFormData返回值函数的。这种设计非常巧妙。因此标签中的事件回调函数加不加()是看有没有函数柯里化这种情况。
