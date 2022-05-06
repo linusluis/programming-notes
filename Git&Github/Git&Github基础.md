@@ -7,7 +7,7 @@
 
 版本控制是一种记录文件变化的方式，以便将来查阅特定版本的文件内容	
 
-![版本控制举例](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E4%B8%BE%E4%BE%8B.png?Expires=1651327963&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=APcL8DL%2F7oJWzxok8HHnFegfCnM%3D&versionId=CAEQHRiBgIDD2afpgxgiIDA5MDFmYjM0MWFhMTRmNjE4MDY2ZGRmODMxNjgyYTQ0)
+![版本控制举例](https://gitee.com/Jeren/cloudimages/raw/master/img/版本控制举例.png)
 
 ### （2）人为维护文档版本的问题
 
@@ -35,7 +35,7 @@ Git是一个版本管理控制系统，它可以在任何时间点，将文档�
 | --- | --- | --- |
 | 用于存放提交记录 | 临时存放被修改文件 | 被Git管理的项目目录 |
 
-![git工作的基本流程](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/git%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B.png?Expires=1651328010&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=fVc%2FbK0nIVcDYBzP5k3PgNfxYuw%3D&versionId=CAEQHRiBgICs2KfpgxgiIDg5N2U5MDNiOGZjMTQ2NWNiZTkwNDhhMTIyMWYxNzVk)
+![git工作的基本流程](https://gitee.com/Jeren/cloudimages/raw/master/img/git基本工作流程.png)
 
 ## 5、Git的使用
 
@@ -75,17 +75,17 @@ Git是一个版本管理控制系统，它可以在任何时间点，将文档�
 
 第一次向gir仓库中提交更新记录时自动产生的一个分支
 
-![主分支](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E4%B8%BB%E5%88%86%E6%94%AF.png?Expires=1651328046&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=8KmLWkt1pBJb8HP1DamB4njx%2Frk%3D&versionId=CAEQHRiBgMDL2KfpgxgiIDRjOWE2Y2U1N2MzZjRkNmJhOTg4MGIzNTk0MjQzNGNi)
+![主分支](https://gitee.com/Jeren/cloudimages/raw/master/img/主分支.png)
 
 ### （2）开发分支（develop）
 
 作为开发的分支，基于master分支创建
 
-![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E5%BC%80%E5%8F%91%E5%88%86%E6%94%AF.png?Expires=1651328078&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=dla7kHuUZVqH2tG8sal%2BgzyoHZg%3D&versionId=CAEQHRiBgICC2afpgxgiIDk0M2YxODUxY2NkMjQ0OWNiNzE5MGJjZWIyNGMyNjUw)
+![image.png](https://gitee.com/Jeren/cloudimages/raw/master/img/开发分支.png)
 
 ### （3）功能分支（feature）：作为开发具体功能的分支，基于开发分支创建
 
-![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E5%8A%9F%E8%83%BD%E5%88%86%E6%94%AF.png?Expires=1651328102&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=kR55lGn9QLfkgNqGNQ%2BE%2FBAwWcw%3D&versionId=CAEQHRiBgIC82KfpgxgiIDU5ZTA0NDJkY2U0NzQ1MjQ4NTg0NTE3ODdmYjcyMDY3)
+![image.png](https://gitee.com/Jeren/cloudimages/raw/master/img/功能分支.png)
 
 ## 2、分支命令
 
@@ -121,7 +121,7 @@ Git是一个版本管理控制系统，它可以在任何时间点，将文档�
 1. B将本地仓库中开发的内容推送到远程仓库
 1. A将远程仓库中的最新内容拉取到本地
 
-![多人协作开发流程](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B.png?Expires=1651328129&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=p08NzdvyC6bwUQVoWCjTyKltuI4%3D&versionId=CAEQHRiBgMCL2afpgxgiIDNlNDEzNzk1MzU3ODQ4Njk5OGQzMmJjYWJmZGU5OTE0)
+![多人协作开发流程](https://gitee.com/Jeren/cloudimages/raw/master/img/多人协作开发流程.png)
 
 ## 3、远程推送
 
@@ -162,7 +162,7 @@ git clone是完全clone远程仓库，git clone只需要在第一次加入到项
 
 那么如何解决就将成为重中之重了。第二个人需要将远程仓库中的高版本拉取到本地，然后会发现拉取到本地的文件产生了变化，如下图：
 
-![多人协作发生冲突的情况](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C%E5%8F%91%E7%94%9F%E5%86%B2%E7%AA%81%E7%9A%84%E6%83%85%E5%86%B5.png?Expires=1651324631&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=UQuryGvaft%2BAAEYNJ1sbB04g64E%3D&versionId=CAEQHRiBgMC8jc7pgxgiIDY0NmZlODIzMzE4ZjRjNDk4N2MyMmM5YzJkNjRjMWUy)
+![多人协作发生冲突的情况](https://gitee.com/Jeren/cloudimages/raw/master/img/多人协作发生冲突的情况.png)
 
 然后在这个文件的基础上进行更改，然后push到远程仓库就解决了。  
 
@@ -189,7 +189,7 @@ github为我们提供了另外一种仓库通讯协议ssh协议。这种协议�
 
 公钥和私钥需要开发者使用命令生成，实际上就是两个文件。公钥要放在github账户中，私钥保存在开发者的电脑中。当开发者通过ssh协议向远程仓库推送内容的时候，公钥和私钥会进行配对，如果配对成功，内容就会推送成功。反之则失败。
 
-[git忽略文件](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/SSH%E5%8D%8F%E8%AE%AE%E5%8E%9F%E7%90%86.jpg?Expires=1651321646&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=eMZNwzeMrQfor2hXIFXKRjYg%2B0Q%3D&versionId=CAEQHRiBgIDj0_LogxgiIGY4NzRhYzhmODgwODRkNTNhZWY4OWZkN2ZlYmNlNDkx)
+![SSH协议原理](https://gitee.com/Jeren/cloudimages/raw/master/img/SSH协议原理.jpg)
 
 **具体操作**
 
@@ -219,7 +219,7 @@ win10已经普遍了，win11都问世了。这个大致了解一下就可！
 
 不想被管理的将名字添加到该文件中就行。
 
-![image.png](https://github-img.oss-cn-beijing.aliyuncs.com/programming_notes/git%26github/git%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6.png?Expires=1651324891&OSSAccessKeyId=TMP.3Kj5gz4KoLrm9uZSjSNuErW6xzWaRyxg6Rh1DZXMd1VBCvAyHKUvqNh3JTogJYy6kZuLmdrCQ7ufd3Lxp8rGhXpRygSx8N&Signature=ydLd76Q3a10x1PYqyO7%2BEZpa1n0%3D&versionId=CAEQHRiBgMDRgdbpgxgiIGYwODFlOTdiM2ExMjQ2MDZiYTkzY2VjN2ExOGZiMDgx)
+![git忽略文件](https://gitee.com/Jeren/cloudimages/raw/master/img/git忽略文件.png)
 
 
 ## 12、为仓库添加详细的说明
