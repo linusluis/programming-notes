@@ -609,17 +609,17 @@ export const createIncrementAsyncAction = (data,time)=>{
 
 # 二、react-redux
 
-## （1）对react-redux的理解
+## 1、对react-redux的理解
 
 1. 一个插件库（与redux不同，redux是一个专门用于做状态管理的js库）
 
 2. 专门用来简化react应用中使用redux
 
-## （2）react-redux原理图
+## 2、react-redux原理图
 
 ![react-redux原理图](https://gitee.com/Jeren/cloudimages/raw/master/img/react-redux原理图.png)
 
-## （3）react-redux将所有组件分成两大类
+## 3、react-redux将所有组件分成两大类
 
 1. UI组件
 - 只负责UI的呈现，不带有任何业务逻辑
@@ -631,7 +631,7 @@ export const createIncrementAsyncAction = (data,time)=>{
 - 使用Redux的API
 - 一般保存在containers文件夹下
 
-## （4）react-redux的基本使用
+## 4、react-redux的基本使用
 
 使用之前要先安装react-redux：`npm i react-redux`
 
@@ -813,7 +813,537 @@ export default function countReducer(prevState=initState,action){
 
 ## 5、react-redux求和案例优化
 
+总共有四处可以优化的位置。
+
+1. `mapDispatchToProps`方法的简写
+
+这里将`mapStateToProps`和`mapDispatchToProps`方法直接作为参数传递给`connect`方法
+```jsx
+export default connect(state=>({count:state}),
+{
+    jia:createIncrementAction,
+    jian:createDecrementAction,
+    jiaAsync:createIncrementAsyncAction
+}
+)(CountUI)
+```
+
+1. 不再需要`store.subscribe()`监听redux的变化
+
+之前使用`store.subscribe()`是为了监听redux中state的变化，进而重新渲染App组件。
+
+然而使用react-redux则无须再进行`store.subscribe()`的监听了。原因是，`react-redux`已经帮我们做了这件事，其背后的逻辑都在`connect()`这个方法中。
+
+2. Provider组件的使用
+
+在`src/App.js`中，store是作为props属性传递给Count组件的。现在有这样一个需求，如果有很多组件都需要得到store中的数据，那么我们给每个组件都传递store不是不可能，只是非常非常的麻烦，那么有什么解决办法么？
+
+办法就是使用`Provider`组件
+
+使用`Provider`需要先引入：`import { Provider } from 'react-redux'`
+
+为了让所有的组件，包括App组件，都能共享store中的数据，我们在`src/index.js`中给Provider组件以Props的方式传递store，这样便能达到需求。如下代码：
+
+```js
+import { Provider } from 'react-redux';
+ReactDOM.render(
+<Provider store = {store}>
+<App/>
+</Provider>,document.getElementById('root'));
+```
 
 
 
+3. 整合UI组件与容器组件
 
+为什么要整合UI组件与容器组件呢？原因是当我们的项目中组件，特别多的时候，我们需要为每一个组件都分别创建一个容器组件和一个UI组件会使得文件量翻倍，因此，通过整合，可以使文件量降低。
+
+那么如何整合，看下列详细代码中：`src/containers/Count/index.jsx`
+
+代码：
+
+- `src/index.js`
+
+```js
+//src/index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import store from './redux/store';
+
+import { Provider } from 'react-redux';
+ReactDOM.render(
+<Provider store = {store}>
+<App/>
+</Provider>,document.getElementById('root'));
+```
+
+- `src/App.js`
+
+```js
+//src/App.js
+import {Component} from 'react';
+
+import Count from './containers/Count';
+
+export default class App extends Component {
+    render(){
+        return(
+            <Count/>
+        )
+    }
+}
+```
+
+- `src/containers/Count/index.jsx`
+
+```jsx
+//src/containers/Count/index.jsx
+import { connect } from 'react-redux';
+import { Component } from 'react';
+
+import { createIncrementAction,createDecrementAction,createIncrementAsyncAction } from '../../redux/count_action';
+
+
+export class CountUI extends Component {
+    increment = () => {
+        const { value } = this.selectNumber;
+        this.props.jia(value * 1);
+
+    }
+    decrement = () => {
+        const { value } = this.selectNumber;
+        this.props.jian(value * 1);
+    }
+    incrementIfOdd = () => {
+        const { count } = this.props;
+        const { value } = this.selectNumber;
+        if (count % 2 !== 0) {
+            this.props.jia(value * 1);
+        }
+
+    }
+    incrementAsync = () => {
+        const {value} = this.selectNumber;
+        this.props.jiaAsync(value*1,1000);
+    }
+    render() {
+        const { count } = this.props
+        return (
+            <div>
+                <h1>{count}</h1>
+                <select name="" id="" ref={(c) => { this.selectNumber = c }}>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <button onClick={this.increment}>+</button>
+                <button onClick={this.decrement}>-</button>
+                <button onClick={this.incrementIfOdd}>奇数+</button>
+                <button onClick={this.incrementAsync}>异步+</button>
+            </div>
+        )
+    }
+}
+
+
+export default connect(state=>({count:state}),
+{
+    jia:createIncrementAction,
+    jian:createDecrementAction,
+    jiaAsync:createIncrementAsyncAction
+}
+)(CountUI)
+```
+
+
+- `src/redux/store.js`
+
+```js
+//src/redux/store.js
+import {createStore,applyMiddleware} from 'redux';
+
+import countReducer from './count_reducer';
+
+import thunk from 'redux-thunk';
+export default createStore(countReducer,applyMiddleware(thunk));
+```
+
+- `src/redux/contant.js`
+
+```js
+//src/redux/contant.js
+export const INCREMENT = 'increment';
+export const DECREMENT = 'decrement';
+```
+
+- `src/count_action.js`
+
+```js
+//src/count_action.js
+import { INCREMENT,DECREMENT } from "./contant"
+export const createIncrementAction = (data)=>({type:INCREMENT,data});
+export const createDecrementAction = (data)=>({type:DECREMENT,data});
+
+export const createIncrementAsyncAction = (data,time)=>{
+    return (dispatch)=>{
+        setTimeout(()=>{
+            dispatch(createIncrementAction(data));
+        },time)
+    }
+}
+
+```
+
+- `src/count_reducer.js`
+
+```js
+//src/count_reducer.js
+import { INCREMENT,DECREMENT } from "./contant";
+const initState = 0;
+const countReducer = (prevState = initState,action)=>{
+    const {type,data} = action;
+
+    switch (type){
+        case INCREMENT:
+            return prevState+data;
+        case DECREMENT:
+            return prevState -data;
+        default:
+            return prevState;
+    }
+}
+export default countReducer;
+```
+## 6、实现数据共享
+
+之前的案例都是Count组件通过redux操作store中的数据，自己存自己取，然而，我们真实开发中是需要将数据共享的，就是其他组件也能够拿到redux中的数据。
+
+如下图案例我们要在Count组件中读出Person组件中的数据，在Person组件中读出Count组件的数据。
+
+![组件间共享数据案例](https://gitee.com/Jeren/cloudimages/raw/master/img/组件间共享数据案例.gif)
+
+### （1）文件结构
+
+说明：多个组件间共享数据，每个组件都有其action和reducer，所以在redux文件夹下新建两个文件夹actions和reducers，分别用来放所有组件的action和reducer。
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220507140917.png)
+
+### （2）重点在于combineReducers()的使用
+
+在store.js文件中，需要将所有组件的reducer组合到一起传递给createStore()。
+
+使用combineReducers()，先导入：`import {combineReducers} from 'redux';`
+
+```js
+import {createStore,applyMiddleware,combineReducers} from 'redux';
+import thunk from 'redux-thunk';
+
+import countReducer from './reducers/count';
+import personReducer from './reducers/person'
+
+const allReducer = combineReducers({
+    he:countReducer,
+    rens:personReducer
+})
+export default createStore(allReducer,applyMiddleware(thunk));
+```
+### （3）代码
+- `src/index.js`
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import store from './redux/store';
+
+import { Provider } from 'react-redux';
+ReactDOM.render(
+<Provider store = {store}>
+<App/>
+</Provider>,document.getElementById('root'));
+```
+
+- `src/App.js`
+
+```js
+import { Component } from 'react';
+
+import Count from './containers/Count';
+import Person from './containers/Person';
+export default class App extends Component {
+    render() {
+        return (
+            <div>
+                <Count />
+                <hr/>
+                <Person />
+            </div>
+        )
+    }
+}
+```
+
+- `src/containers/Count/index.jsx`
+
+```jsx
+import { connect } from 'react-redux';
+import { Component } from 'react';
+
+import { createIncrementAction,createDecrementAction,createIncrementAsyncAction } from '../../redux/actions/count';
+
+
+export class CountUI extends Component {
+    increment = () => {
+        const { value } = this.selectNumber;
+        this.props.jia(value * 1);
+        console.log(this.props);
+
+    }
+    decrement = () => {
+        const { value } = this.selectNumber;
+        this.props.jian(value * 1);
+    }
+    incrementIfOdd = () => {
+        const { count } = this.props;
+        const { value } = this.selectNumber;
+        if (count % 2 !== 0) {
+            this.props.jia(value * 1);
+        }
+
+    }
+    incrementAsync = () => {
+        const {value} = this.selectNumber;
+        this.props.jiaAsync(value*1,1000);
+    }
+    render() {
+        const { count } = this.props
+        return (
+            <div>
+                <h1>我是Count组件，下方组件的人数为：{this.props.persons.length}</h1>
+                <h2>{count}</h2>
+                <select name="" id="" ref={(c) => { this.selectNumber = c }}>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <button onClick={this.increment}>+</button>
+                <button onClick={this.decrement}>-</button>
+                <button onClick={this.incrementIfOdd}>奇数+</button>
+                <button onClick={this.incrementAsync}>异步+</button>
+            </div>
+        )
+    }
+}
+
+
+export default connect(state=>({count:state.he,persons:state.rens}),
+{
+    jia:createIncrementAction,
+    jian:createDecrementAction,
+    jiaAsync:createIncrementAsyncAction
+}
+)(CountUI)
+```
+
+
+- `src/containers/Person/index.jsx`
+
+```jsx
+import {Component} from 'react';
+import {connect} from 'react-redux';
+import { createAddPersonAction } from '../../redux/actions/person';
+class PersonUI extends Component{
+    add = ()=>{
+        const age = this.ageNode.value;
+        const name = this.nameNode.value;
+        this.props.addPerson(name,age);
+    }
+    render(){
+        const {persons} = this.props;
+        return(
+            <div>
+                <h1>我是Person组件,上方组件求和为：{this.props.count}</h1>
+                姓名：<input ref={c=>{this.nameNode = c}} type="text" placeholder='输入名字'/>
+                年龄：<input ref={c=>{this.ageNode = c}} type="text" placeholder='输入年龄'/>
+                <button onClick = {this.add}>填加</button>
+                <ul>
+                    {
+                        persons.map((person,index)=>{
+                            return <li key ={index} >{person.name}---{person.age}</li>
+
+                        })
+                    }
+                </ul>
+            </div>
+        )
+    }
+}
+
+export default connect(state=>({persons:state.rens,count:state.he}),
+{
+    addPerson:createAddPersonAction
+}
+)(PersonUI)
+```
+
+- `src/redux/store.js`
+
+```js
+import {createStore,applyMiddleware,combineReducers} from 'redux';
+import thunk from 'redux-thunk';
+
+import countReducer from './reducers/count';
+import personReducer from './reducers/person'
+
+const allReducer = combineReducers({
+    he:countReducer,
+    rens:personReducer
+})
+export default createStore(allReducer,applyMiddleware(thunk));
+```
+
+- `src/redux/contant.js`
+
+```js
+export const INCREMENT = 'increment';
+export const DECREMENT = 'decrement';
+export const ADD_PERSON = 'addPerson';
+
+```
+
+- `src/redux/actions/count.js`
+
+```js
+import { INCREMENT,DECREMENT} from "../contant"
+export const createIncrementAction = (data)=>({type:INCREMENT,data});
+export const createDecrementAction = (data)=>({type:DECREMENT,data});
+
+export const createIncrementAsyncAction = (data,time)=>{
+    return (dispatch)=>{
+        setTimeout(()=>{
+            dispatch(createIncrementAction(data));
+        },time)
+    }
+}
+```
+
+- `src/redux/actions/person.js`
+
+```js
+import { ADD_PERSON } from "../contant";
+export const createAddPersonAction = (name,age) =>({type:ADD_PERSON,name,age});
+```
+
+- `src/redux/reducers/count.js`
+
+```js
+import { INCREMENT,DECREMENT } from "../contant";
+const initState = 0;
+const countReducer = (prevState = initState,action)=>{
+    const {type,data} = action;
+
+    switch (type){
+        case INCREMENT:
+            return prevState+data;
+        case DECREMENT:
+            return prevState -data;
+        default:
+            return prevState;
+    }
+}
+export default countReducer;
+```
+
+- `src/redux/reducers/person.js`
+
+```js
+import { ADD_PERSON } from "../contant";
+
+const initState = [
+    {name:'zhangsan',age:12},
+    {name:'lisi',age:22}
+]
+const personReducer = (prevState = initState,action)=>{
+    const {type,name,age} = action;
+    switch(type){
+        case ADD_PERSON:
+            const newPerson = {name,age};
+            //preState.unshift(data)//此处不可以这样写，这样会导致preState被改写了，personReducer就不是纯函数了
+            return[...prevState,newPerson];
+        default:
+            return prevState;
+    }
+}
+export default personReducer;
+```
+
+### （4）react-redux数据共享小总结
+
+1. 定义一个Person组件，和Count组件通过redux共享数据。
+2. 为Person 组件编写：reducer、action，配置constant常量
+3. 重点：Person组件的reducer和Count的Reducer要使用combineReducers进行合并，合并后的总状态是一个对象。
+4. 交给store的是总reducer，最后注意在组件中取出状态的时候，记得“取到位”。
+
+
+
+## 7、纯函数和高阶函数
+### （1）纯函数
+1. 一类特别的函数：这类函数的返回结果只依赖其参数
+2. 必须遵守以下一些约束
+- 不得改写参数数据
+- 不会产生任何副作用，例如网络请求，输入和输出设备
+- 不能调用Date.now()或者Math.random(),shift(),unshift()等不纯的方法
+
+3. redux的reducer函数必须是一个纯函数。
+
+### （2）高阶函数
+1. 理解：一类特别的函数
+- 情况1：参数是函数
+- 情况2：返回值是函数
+
+2. 常见的高阶函数：
+- 定时器设置函数
+- 数组的forEach()/map()/filter()/reduce()/find()/bind()
+- promise
+- react-redux中的connect函数
+
+3. 作用：能实现更加动态，更加可扩展的功能。
+
+## 8、redux开发者工具
+
+1. 安装插件 redux devtools
+2. 这个插件还需要一个库的配合使用
+
+安装库：`npm i redux-devtools-extension`
+
+3. 使用redux-devtools-extension
+
+在store.js中引入`composeWithDevTools`：`import { composeWithDevTools } from 'redux-devtools-extension'`
+
+如何使用`composeWithDevTools`：将`composeWithDevTools`作为第二个参数传递给`createStore()`，如果第二个参数有`applyMiddleWare()`，则将`applyMiddleWare()`作为参数传递给`composeWithDevTools()`
+
+这是语法规定。
+
+具体代码：
+
+```js
+//src/redux/store.js
+import {createStore,applyMiddleware,combineReducers} from 'redux';
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import countReducer from './reducers/count';
+import personReducer from './reducers/person'
+
+const allReducer = combineReducers({
+    he:countReducer,
+    rens:personReducer
+})
+export default createStore(allReducer,composeWithDevTools(applyMiddleware(thunk)));
+```
+### 9、求和案例react-redux最终版
+
+1. 所有变量名字要规范，尽量触发对象简写形式。
+2. reducers文件夹中，编写index.js专门用于汇总并暴露所有的reducer
+
+代码详见：
+[求和案例_react-redux最终版](https://github.com/linusluis/workspace_forStu/tree/main/workspace21_React/redux_reactredux/09_%E6%B1%82%E5%92%8C%E6%A1%88%E4%BE%8B_react-redux%E6%9C%80%E7%BB%88%E7%89%88)
