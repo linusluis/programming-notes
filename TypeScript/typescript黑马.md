@@ -149,7 +149,7 @@ let arr3:number | string[] = 23;
 let arr2:Array<string|number> = [1,'s',2,'d'];
 ```
 
-解释：`|`（竖线）在ts中叫做联合类型（由两个或多个其他类型组成的类型，表示可以是这些类型中的任意一种）。
+解释：`|`（竖线）在ts中叫做联合类型（由两个或多个 	其他类型组成的类型，表示可以是这些类型中的任意一种）。
 
 注意：这是TS中联合类型的语法，只有一根竖线，不要与JS中的或（||）混淆了。
 
@@ -1359,12 +1359,402 @@ class也可以配合泛型来使用
 
 #### <1> 创建泛型类
 
-
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220510083101.png)
 
 解释：
 
 1. 类似于泛型接口，在class名称后面添加<类型变量>，这个类就变成了泛型类。
 2. 此处的add方法，采用的是箭头函数形式的类型书写方式。
 
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220510112627.png)
+
+类似于泛型接口，在创建class实例时，在类名后面通过<类型>来指定明确的类型。
+
+### （9）泛型工具类型
+
+TS内置了一些常用的工具类型，来简化TS中的一些常见操作。
+
+说明：它们都是基于泛型实现的（泛型适用于多种类型，更加通用，并且是内置的），可以直接在代码中使用
+
+这些工具类型有很多，主要学习以下几个：
+
+1. Partial<Type>
+2. Readonly<Type>
+3. Pick<Type,Keys>
+4. Record<Keys,Type>
+
+#### <1> `Partial<Type>`
+
+泛型工具类型 - **Partial<Type> 用来构造（创建）一个类型，将 Type 的所有属性设置为可选。**
+
+```typescript
+interface Props{
+    id:string;
+    children:number[];
+}
+
+type PartialProps = Partial<Props>
+const p1:Props= {
+    id:'',
+    children:[12,23]
+}
+const p2:PartialProps = {
+    //属性是可选的
+}
+```
 
 
+
+解释：构造出来的新类型 PartialProps 结构和 Props 相同，但所有属性都变为可选的。
+
+#### <2>`Readonly<Type>`
+
+泛型工具类型 - Readonly<Type> 用来构造一个类型，将 Type 的所有属性都设置为 readonly（只读）.
+
+![image-20220510090407517](https://gitee.com/Jeren/cloudimages/raw/master/img/20220510112549.png)
+
+解释：构造出来的新类型 ReadonlyProps 结构和 Props 相同，但所有属性都变为只读的。
+
+当我们想重新给 id 属性赋值时，就会报错：无法分配到 "id" ，因为它是只读属性。
+
+#### <3>`Pick<Type,Keys>`
+
+泛型工具类型 - Pick 从 Type 中选择一组属性来构造新类型
+
+```typescript
+interface Props{
+    id:string,
+    title:string,
+    children:number[]
+}
+
+type PickProps = Pick<Props,'id' | 'title'>
+
+const p:PickProps = {
+    id:'002',
+    title:'hello'
+}
+```
+
+
+
+解释：
+
+1. Pick 工具类型有两个类型变量：1 表示选择谁的属性 2 表示选择哪几个属性。 
+2. 其中第二个类型变量，如 果只选择一个则只传入该属性名即可。 
+3. 第二个类型变量传入的属性只能是第一个类型变量中存在的属性。 
+4. 构造出来的新类型 PickProps，只有 id 和 title 两个属性类型。
+
+#### <4>  `Record<Keys,Type>`
+
+泛型工具类型 - Record 构造一个对象类型，属性键为 Keys，属性类型为 Type
+
+```typescript
+type RecordObj = Record<'a' | 'b' | 'c',string[]>
+let obj:RecordObj = {
+    a:['h','e'],
+    b:['l','l'],
+    c:['o']
+}
+```
+
+解释： 
+
+1. Record 工具类型有两个类型变量：1 表示对象有哪些属性 2 表示对象属性的类型。 
+2. 2. 构建的新对象类型 RecordObj 表示：这个对象有三个属性分别为a/b/c，属性值的类型都是 string[]。
+
+## 5、索引签名类型
+
+暂未学习。。。。
+
+## 6、映射类型
+
+暂未学习。。。
+
+# 五、typescript类型声明文件
+
+今天几乎所有的 JavaScript 应用都会引入许多第三方库来完成任务需求。
+
+这些第三方库不管是否是用 TS 编写的，最终都要编译成 JS 代码，才能发布给开发者使用。 我们知道是 TS 提供了类型，才有了代码提示和类型保护等机制。
+
+但在项目开发中使用第三方库时，你会发现它们几乎都有相应的 TS 类型，这些类型是怎么来的呢？类型声明文件 类型声明文件：用来为已存在的 JS 库提供类型信息。 
+
+这样在 TS 项目中使用这些库时，就像用 TS 一样，都会有代码提示、类型保护等机制了。 
+
+1. TS 的两种文件类型
+2. 类型声明文件的使用说明
+
+## 1、TS中的两种文件类型
+
+TS 中有两种文件类型：1 .ts 文件 2 .d.ts 文件。
+
+- .ts 文件：
+
+  1. 既包含类型信息又可执行代码。 
+
+  2. 可以被编译为 .js 文件，然后，执行代码。 
+
+  3. 用途：编写程序代码的地方。
+
+     
+
+- .d.ts 文件：
+  1. 只包含类型信息的类型声明文件。 
+  2. 不会生成 .js 文件，仅用于提供类型信息。 
+  3. 用途：为 JS 提供类型信息。 
+
+总结：.ts 是 implementation（代码实现文件）；.d.ts 是 declaration（类型声明文件）。 如果要为 JS 库提供类型信息，要使用 .d.ts 文件
+
+## 2、类型声明文件的使用说明
+
+在使用 TS 开发项目时，类型声明文件的使用包括以下两种方式：
+
+1. 使用已有的类型声明文件 
+2. 创建自己的类型声明文件 
+
+学习顺序：先会用（别人的）再会写（自己的）。
+
+### （1）使用已有的类型声明文件
+
+使用已有的类型声明文件：1 内置类型声明文件 2 第三方库的类型声明文件。
+
+ 内置类型声明文件：TS 为 JS 运行时可用的所有标准化内置 API 都提供了声明文件。 比如，在使用数组时，数组所有方法都会有相应的代码提示以及类型信息： 
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220510112645.png)
+
+
+
+实际上这都是 TS 提供的内置类型声明文件。 
+
+可以通过 Ctrl + 鼠标左键（Mac：option + 鼠标左键）来查看内置类型声明文件内容。 
+
+比如，查看 forEach 方法的类型声明，在 VSCode 中会自动跳转到 lib.es5.d.ts 类型声明文件中。
+
+当然，像 window、document 等 BOM、DOM API 也都有相应的类型声明（lib.dom.d.ts）
+
+### （2）第三方库的类型说明文件
+
+第三方库的类型声明文件：目前，几乎所有常用的第三方库都有相应的类型声明文件。 第三方库的类型声明文件有两种存在形式：1 库自带类型声明文件 2 由 DefinitelyTyped 提供。 
+
+1. 库自带类型声明文件：比如，axios
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220510212524.png)
+
+解释：这种情况下，正常导入该库，TS 就会自动加载库自己的类型声明文件，以提供该库的类型声明。
+
+2. 由 DefinitelyTyped 提供。 
+
+[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/) 是一个 github 仓库，用来提供高质量 TypeScript 类型声明。 
+
+可以通过 npm/yarn 来下载该仓库提供的 TS 类型声明包，这些包的名称格式为：@types/*。 
+
+比如，@types/react、@types/lodash 等。 
+
+说明：在实际项目开发时，如果你使用的第三方库没有自带的声明文件，VSCode 会给出明确的提示。
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220510212849.png)
+
+解释：当安装 @types/* 类型声明包后，TS 也会自动加载该类声明包，以提供该库的类型声明。 
+
+补充：TS 官方文档提供了一个[页面](https://www.typescriptlang.org/dt/)，可以来查询 @types/* 库。
+
+## 3、创建自己的类型声名文件
+
+暂未学习。。。。
+
+
+
+
+
+# 六、在react中使用typescript
+
+现在，我们已经掌握了 TS 中基础类型、高级类型的使用了。但是，如果要在前端项目开发中使用 TS，还需要掌握 React、Vue、Angular 等这些库或框架中提供的 API 的类型，以及在 TS 中是如何使用的。 接下来，我们以 React 为例，来学习如何在 React 项目中使用 TS。包括以下内容： 
+
+1. 使用 CRA 创建支持 TS 的项目 
+2. TS 配置文件 tsconfig.json 
+3. React 中的常用类型
+
+## 1、使用CRA创建支持TS的项目
+
+React 脚手架工具 create-react-app（简称：CRA）默认支持 TypeScript。 创建支持 TS 的项目命令：npx create-react-app 项目名称 --template typescript。 当看到以下提示时，表示支持 TS 的项目创建成功：
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220510112517.png)
+
+更多：[在已有项目中使用 TS](https://create-react-app.dev/docs/adding-typescript/)
+
+## 2、React支持的项目目录结构说明
+
+相对于非 TS 项目，目录结构主要由以下三个变化：
+
+1. 项目根目录中增加了 tsconfig.json 配置文件：指定 TS 的编译选项（比如，编译时是否移除注释）。
+2. React 组件的文件扩展名变为：*.tsx。
+3. src 目录中增加了 react-app-env.d.ts：React 项目默认的类型声明文件。
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220510174155.png)
+
+有必要详细说明一下这个react-app-env.d.ts
+
+react-app-env.d.ts：React 项目默认的类型声明文件
+
+三斜线指令：指定依赖的其他类型声明文件，types 表示依赖的类型声明文件包的名称
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220510185326.png)
+
+解释：告诉 TS 帮我加载 react-scripts 这个包提供的类型声明。
+
+react-scripts 的类型声明文件包含了两部分类型：
+
+1. react、react-dom、node 的类型
+2. 图片、样式等模块的类型，以允许在代码中导入图片、SVG 等文件。
+
+
+
+TS 会自动加载该 .d.ts 文件，以提供类型声明（通过修改 tsconfig.json 中的 include 配置来验证）
+
+## 3、TS配置文件tsconfig.json的说明
+
+tsconfig.json 指定：项目文件和项目编译所需的配置项。
+
+注意：TS 的配置项非常多（100+），以 CRA 项目中的配置为例来学习，其他的配置项用到时查[文档](https://www.typescriptlang.org/zh/tsconfig)即可。
+
+tsconfig.json 文件所在目录为项目根目录（与 package.json 同级）。
+
+tsconfig.json 可以自动生成，命令：`tsc --init`。
+
+```typescript
+{
+  //编译选项
+  "compilerOptions": {
+    //生成代码的语言版本
+    "target": "es5",
+    //指定要包含在编译中的library
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    //允许ts编译器编译js文件
+    "allowJs": true,
+    //跳过声名文件的类型检查
+    "skipLibCheck": true,
+    //es模块化操作，屏蔽ESModule和CommonJS之间的差异
+    "esModuleInterop": true,
+    //允许通过import x from y，即使模块没有显示指定default导出
+    "allowSyntheticDefaultImports": true,
+    //开启严格模式
+    "strict": true,
+    //对文件名强制区分大小写
+    "forceConsistentCasingInFileNames": true,
+    //为switch语句启用错误报告
+    "noFallthroughCasesInSwitch": true,
+    //生成代码的模块化标准
+    "module": "esnext",
+    // 模块解析（查找）策略
+    "moduleResolution": "node",
+    // 允许导入扩展名为.json的模块
+    "resolveJsonModule": true,
+    // 是否将没有import/export的文件视为旧（全局而非模块化）脚本文件。
+    "isolatedModules": true,
+    //编译时 不生成任何文件（只进行类型检查）
+    "noEmit": true,
+    // 指定将JSX编译成什么形式
+    "jsx": "react-jsx"
+  },
+  //指定允许ts处理目录
+  "include": [
+    "src"
+  ]
+}
+```
+
+### （1）通过命令行方式使用编译配置
+
+除了在 tsconfig.json 文件中使用编译配置外，还可以通过命令行来使用
+
+使用演示：tsc hello.ts --target es6
+
+注意：
+
+1. tsc 后带有输入文件时（比如，tsc hello.ts），将忽略 tsconfig.json 文件。 
+2. tsc 后不带输入文件时（比如，tsc），才会启用 tsconfig.json。 
+
+推荐使用：tsconfig.json 配置文件。
+
+
+
+## 4、React中的常用类型
+
+前提说明：现在，基于 class 组件来讲解 React+TS 的使用（最新的 React Hooks，在后面讲解）。
+
+ 在不使用 TS 时，可以使用 prop-types 库，为 React 组件提供类型检查。
+
+ 说明：TS 项目中，推荐使用 TypeScript 实现组件类型校验（代替 PropTypes）。 不管是 React 还是 Vue，只要是支持 TS 的库，都提供了很多类型，来满足该库对类型的需求。 
+
+注意： 
+
+1. React 项目是通过 @types/react、@types/react-dom  类型声明包，来提供类型的。
+2. 这些包 CRA 已帮我们安装好（react-app-env.d.ts），直接用即可。 
+3. 参考资料：[React文档-静态类型检查](https://reactjs.org/docs/static-type-checking.html) 、[React+TS备忘单](https://github.com/typescript-cheatsheets/react)
+
+### （1）React函数组件的类型1——组件和属性的类型
+
+函数组件的类型以及组件的属性
+
+```typescript
+import { FC } from "react"
+
+interface Props{
+    name:string,
+    age?:number
+}
+const Demo:FC<Props> = ({name,age})=>{
+    return <div>你好，我叫{name},我{age}岁了</div>
+}
+export default Demo;
+```
+
+实际上，还可以完全简化为（完全按照函数在TS中的写法）
+
+```typescript
+const Demo = ({name,age}:Props)=>{
+    return (
+        <div>你好，我叫{name}，我{age}岁了</div>
+    )
+}
+```
+
+### （2）React函数组件的类型2——事件绑定和事件对象
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220510205057.png)
+
+技巧：在 JSX 中写事件处理程序（e => {}），然后，把鼠标放在 e 上，利用 TS 的类型推论来查看事件对象类型。
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220510205610.png)
+
+### （3）class组件的类型1——组件的类型
+
+class 组件，主要包括以下内容： 
+
+1. 组件的类型、属性、事件 
+
+2. 组件状态（state）
+
+class组件的类型
+
+```typescript
+import {Component} from 'react';
+interface IProps{
+    message:string
+}
+interface IState{
+    count:number
+}
+class Demo1 extends Component{}
+class Demo2 extends Component<IProps>{}
+class Demo3 extends Component<{},IState>{}
+class Demo4 extends Component<IProps,IState>{}
+```
+
+### （4）class组件状态（state）和事件
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220510212055.png)
