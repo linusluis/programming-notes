@@ -31,7 +31,7 @@ typescript是微软开发的开源编程语言，可以在任何运行javascript
 4. 支持最新的ECMAScript语法，优先体验最新的语法，让你走在前端技术最前沿。
 5. TS类型推断机制，不需要在代码中的每个地方都显示标注类型，让你在享受优势的同时，尽量降低了成本。
 
-除此之外，Vue3源码使用TS重写、Angular默认支持TS、React与TS完美配合，Typescript于成为大中型前端项目的首选编程语言。
+除此之外，Vue3源码使用TS重写、Angular默认支持TS、React与TS完美配合，Typescript已成为大中型前端项目的首选编程语言。
 
 # 二、typescript初体验
 
@@ -412,7 +412,7 @@ let position:[number,number] = [22.44,33.55];
 使用场景：**用来表示一组明确的可选值列表**
 比如，在贪吃蛇游戏中，游戏的方向的可选值只能是上、下、左、右中的任意一个。
 
-![贪吃蛇案例](../AppData/Roaming/Typora/typora-user-images/image-20220507002815304.png)
+![贪吃蛇案例](https://gitee.com/Jeren/cloudimages/raw/master/img/20220508201411.png)
 
 解释：参数`direction`的值只能是up/down/left/right中的任意一个。
 
@@ -576,6 +576,8 @@ let str2:typeof str;//str2就是和str一样为string类型
 
 # 四、typescript高级类型
 
+
+
 ## 1、高级类型概述
 
 TS中的高级类型又很多，重点学习一下高级类型
@@ -585,6 +587,784 @@ TS中的高级类型又很多，重点学习一下高级类型
 4. 泛型和keyof
 5. 索引签名类型和索引查询类型
 6. 映射类型
+
+## 2、Class 类
+
+TypeScript全民支持ES2015中引入的class关键字，并为其添加了类型注解和其他语法（比如，可见性修饰符等）
+
+class基本使用，如下：
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220508202413.png)
+
+
+
+解释：
+
+1. 根据TS中的类型推论，可以知道Person类的实例对象p的类型是Person.
+2. TS中的class，**不仅提供了class的语法功能，也作为一种类型存在。**
+
+### （1）实例属性初始化
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220508202701.png)
+
+解释：
+
+1. 声名成员age，类型为number(没有初始值)
+2. 声名成员为gender，并设置初始值，此时，可省略类型注解（TS类型推论为string类型）。
+
+### （2）构造函数
+
+ ```typescript
+ class Person{
+     name:string;
+     age:number;
+     gender:string;
+     constructor(name:string,age:number,gender:string){
+         this.name = name;
+         this.age = age;
+         this.gender = gender;
+     }
+ }
+ 
+ const p = new Person('luis',22,'男');
+ ```
+
+
+
+解释：
+
+1. 成员初始化（比如，age:number）后，才可以通过this.age来访问实例成员
+2. 需要为构造函数指定类型注解，否则会被隐式推断为any；构造函数不需要返回值类型。
+
+### （3）class的实例方法
+
+```typescript
+class Point{
+    x = 3;
+    y = 10;
+    scale = (n:number):void=>{
+        this.x*=n;
+        this.y*=n;
+    } 
+}
+const p = new Point();
+p.scale(10);
+console.log(p.x);//30
+```
+
+
+
+解释：方法的类型注解（函数和返回值）与函数用法相同
+
+### （4）class的继承
+
+类继承的两种方式：
+
+1. extends（继承父类）
+2. implements（实现接口）
+
+说明：JS中只有extends，而implements是TS提供的
+
+```typescript
+
+class Animal{
+    name:string;
+    age:number;
+    constructor(name:string,age:number){
+        this.name = name;
+        this.age = age
+    }
+    run(){
+        console.log('跑啊跑');
+    }
+}
+enum Gender{男,女};
+class Dog extends Animal{
+    gender:Gender;
+    constructor(name:string,age:number,gender:Gender){
+        super(name,age);
+        this.gender = gender
+    }
+    bark(){
+        console.log('汪汪汪');
+    }
+}
+const dog = new Dog('大黄',12,Gender.男);
+dog.run();
+dog.bark();
+```
+
+
+
+解释：
+
+1. 通过extends 关键字实现继承
+2. 子类Dog类继承父类Animal，则Dog的实例对象dog就同时具有了父类Animal和子类的所有属性和方法了
+
+### （5）class的实现接口
+
+```typescript
+interface Singable{
+    sing():void;
+}
+class Person implements Singable{
+    sing(): void {
+        console.log('I can sing a song');
+    }
+}
+```
+
+
+
+解释：
+
+1. 通过implements关键字让class实现接口
+2. Person类实现接口Singable意味着，Person类中必须提供Singable接口中指定的所有方法和属性。
+
+### （6）类成员可见性
+
+可以使用TS来控制class的方法或属性对于class外的代码是否可见
+
+可见性修饰符包括：
+
+1. public（公有的）
+2. protected（受保护的）
+3. private（私有的）
+
+#### <1> public 
+
+`public`：表示公有的、公开的，公有成员可以被任何地方访问，默认可见性
+
+```typescript
+class Animal{
+    public move(){
+        console.log('moving along');
+    }
+}
+const dog = new Animal();
+dog.move();
+```
+
+
+
+解释：
+
+1. 在类属性或方法前面添加public关键字，来修饰该属性或方法是共有的。
+2. 因为public是默认可见性，所以直接省略。
+
+#### <2>protected
+
+`protected`表示受保护的，仅对其声名所在类和子类中（非实例对象）可见。
+
+
+
+```typescript
+class Animal{
+    protected move(){
+        console.log('moving along');
+    }
+}
+class Dog extends Animal{
+    bark(){
+        console.log('汪汪汪!');
+        this.move();//父类中受保护的方法
+    }
+}
+const dog = new Animal();
+//dog.move();//实例不能直接访问。
+const dog2 = new Dog();
+dog2.bark();//两个方法都能访问到
+```
+
+
+
+解释：
+
+1. 在类属性或方法前面添加protected关键字，来修饰该属性或方法是受保护的。
+2. 在子类的方法内部可以通过this来访问父类中受保护的成员，但是，对实例不可见。
+
+
+
+####  <3>private
+
+`private`表示私有的，只在当前类中可见，对实例对象以及子类也是不可见的。
+
+```typescript
+class Animal{
+    protected move(){
+        console.log('moving along');
+        this.run();//在当前类中可以访问private的属性
+    }
+    private run(){
+        console.log('run run run ...');
+    }
+}
+class Dog extends Animal{
+    bark(){
+        console.log('汪汪汪!');
+        this.move();
+        // this.run(); 在子类中不能访问到run方法
+    }
+}
+const dog = new Animal();
+
+const dog2 = new Dog();
+dog2.bark();
+// dog2.run();//在实例对象中也不能访问run方法
+```
+
+
+
+
+
+解释：
+
+1. 在类属性或方法前面添加private关键字，来修饰属性或方法是私有的。
+2. 私有的属性或方法只在当前类中可见，对子类和实例对象也都是不可见的。
+
+
+
+### （7）只读修饰符
+
+除了可见性修饰符之外，还有一个常见的修饰符就是：readonly（只读修饰符）。
+
+readonly：表示只读，用来防止在构造函数之外对属性进行赋值。
+
+```typescript
+class Person{
+    //注意：只要是readonly来修饰的属性，必须手动提供明确的类型
+    readonly age:number = 18;
+    constructor(age:number){
+        this.age = age;
+    }
+}
+const  p = new Person(23);
+p.age = 33;//不能修改
+```
+
+
+
+解释：
+
+1. 使用readobly关键字修饰概属性是只读的没注意**只能修饰属性不能修饰方法**
+2. 注意：属性age后面的类型注解（比如，此处的number）如果不加，则age的类型为18（字面量类型）
+3. 接口或者{}表示的对象类型，也可以使用readonly。
+
+```typescript
+//比如接口中
+interface IPerson{
+    name:string;
+    readonly age:number
+}
+
+const person:IPerson = {
+    name:'luis',
+    age:23
+}
+// person.age = 33;//不能更改，因为age是只读的
+
+//比如对象中
+const computer:{readonly type:string,size:number} = {
+    type:'BenQ300',
+    size:23
+}
+
+computer.type = 'Huawei';//不能更改，因为type是只读的。
+```
+
+## 2、类型兼容性
+
+两种类型系统：
+
+1. Structural Type System（结构化类型系统）
+2. Nominal Type System（标明类型系统）
+
+TS采用的是结构化类型系统，也叫做duck typing（鸭子类型），**类型检查关注的是值所具有的形状。**
+
+也就是说，在结构类型系统中，如果两个对象具有相同的形状，则认为他们属于同一类型。
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220508233702.png)
+
+解释：
+
+1. Point和Point2D是两个名称不同的类。
+2. 变量p的类型被显示标注为Point类型，但是，它的值却是Point2D的实例，并且没有类型错误。
+3. 因为TS是结构化类型系统，只检查Point和Point2D的结构是否相同（相同，都具有x和y两个属性，属性类型也相同）。
+4. 但是，如果在Nominal Type System中（比如，C#、Java等），它们是不同的类，类型无法兼容。
+
+如下代码也属于类型兼容性
+
+```typescript
+let arr= ['a','b','c'];
+arr.forEach(value=>{})
+arr.forEach((value,index)=>{})
+arr.forEach((value,index,array)=>{})
+```
+
+### （1）对象之间的类型兼容性
+
+注意：在结构化类型系统中，如果两个对象具有相同的形状，则认为它们属于同一类型，这种说法并不准确。
+
+更准确的说法：对于对象类型来说，y的成员至少与x相同，则x兼容y（**成员多的可以赋值给少的**）。
+
+```typescript
+class Point{x:number;y:number}
+class Point3D{x:number;y:number;z:number}
+const p:Point = new Point3D();
+//const p2:Point3D = new Point();//少的复制给多的就会报错
+```
+
+解释：
+
+1. Point3D的成员至少与Point相同在则Point兼容Point3D.
+2. 所以，成员多的Point3D可以赋值给成员少的Point
+
+### （2）接口兼容性
+
+除了class之外，TS中的其他类型也存在互相兼容的情况，包括：①函数兼容性 ②函数兼容性等。
+
+接口之间的兼容性，类似于class。并且，class和interface之间也可以兼容。
+
+- 接口之间的兼容性
+
+```typescript
+interface Point{
+    x:number
+    y:number
+}
+interface Point2D{
+    x:number
+    y:number
+}
+let p1:Point;
+let p2:Point2D = p1;
+interface Point3D{
+    x:number
+    y:number
+    z:number
+}
+let p3:Point3D;
+p2 = p3;
+```
+
+- 接口与类之间的兼容性
+
+```typescript
+interface Point{
+    x:number
+    y:number
+}
+interface Point2D{
+    x:number
+    y:number
+}
+let p1:Point;
+let p2:Point2D = p1;
+class Point3D{
+    x:number
+    y:number
+    z:number
+}
+const p3:Point2D = new Point3D();
+```
+
+### （3）函数之间的兼容性——函数参数个数
+
+函数之间兼容性比较复杂，需要考虑：①参数个数  ②参数类型 ③返回值类型
+
+
+
+参数对的兼容参数少的（或者说，参数少的可以赋值给多的）
+
+```typescript
+//参数个数：参数少的可以赋值给参数多的
+type F1 = (a:number) =>void;
+type F2 = (a:number,b:number) =>void;
+
+let f1:F1;
+let f2:F2;
+f2 = f1;//少的赋值给多的
+// f1 = f2;//多的赋值给少的，会报错。
+```
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220509114247.png)
+
+解释：
+
+1. 参数少的可以赋值给参数多的，所以f1可以赋值给f2
+2. 数组forEach方法的第一个参数是回调函数，该示例中类型为：
+3. 在JS中省略用不到的函数参数实际上是很少见的，这样的使用方式，促成了TS中函数类型之间的兼容性。
+4. 并且因为回调函数是有类型的，所以，TS会自动推出参数item、index、array
+
+### （4）函数之间的兼容性——函数参数类型
+
+参数类型，相同位置的参数类型要相同（原始类型）或兼容（对象类型）
+
+- 简单：参数类型是原始类型的情况---要求参数类型相同
+
+ ```typescript
+ type F1 = (a:number)=>string;
+ type F2 = (a:number)=>string;
+ let f1:F1;
+ let f2 :F2 = f1;
+ ```
+
+解释：函数类型F2兼容函数类型F1，因为F1和F2的第一个参数类型相同。
+
+- 复杂：参数类型包括对象类型的情况
+
+参数类型，相同位置的参数类型要相同或者兼容。
+
+```typescript
+//对象类型
+interface Point2D{
+    x:number
+    y:number
+}
+interface Point3D{
+    x:number
+    y:number
+    z:number
+}
+type F2 = (p:Point2D)=>void;
+type F3 = (p:Point3D)=>void;
+
+let f2:F2;
+let f3:F3 = f2;
+```
+
+
+
+解释：
+
+1. 注意，此处与前面讲到的接口兼容性冲突
+2. 技巧：将对象拆开，把每个属性看做一个个参数，则参数少的（f2）可以赋值给参数多的（f3）
+
+
+
+### （5）函数之间的兼容性——函数返回值
+
+返回值类型，只关注返回值类型本身即可：
+
+```typescript
+type F5 = () =>string;
+type F6 = ()=>string;
+
+let f5:F5;
+let f6:F6 = f5;
+f5 = f6;
+```
+
+```typescript
+type F7 = ()=>{name:string}
+type F8 = ()=>{name:string,age:number}
+let f7 : F7;
+let f8 : F8;
+f7 = f8;
+//f8 = f7;//成员少的不能赋值给成员多的。
+```
+
+
+
+解释：
+
+1. 如果返回值类型是原始类型，此时两个类型要相同，比如，第一段代码类型F5和F6
+2. 如果返回值类型是对象类型，此时成员多的可以赋值给成员少的，比如，第一段代码类型F7和F8
+
+## 3、交叉类型
+
+交叉类型（&）：功能类似于接口继承（extends），用于组合多个类型为一个类型（常用于对象类型）
+
+比如，
+
+```typescript
+interface Person{
+    name:string;
+    say():number
+}
+interface Contact{
+    phone:string;
+}
+
+type PersonDetail = Person & Contact;
+let obj :PersonDetail = {
+    name:'jack',
+    phone:'133...',
+    say(){
+        return 1;
+    }
+```
+
+
+
+解释：使用交叉类型之后，新的类型personDetail就同时具备了person和Contact的所有属性类型
+
+相当于，
+
+```typescript
+type PersonDetail = {name:string;phone:string}
+```
+
+### （1）交叉类型(&)和接口继承（extends）的对比
+
+- 相同点：都可以实现对象类型的组合。
+- 不同点：两种方式实现类型组合时，对于同名属性之间，处理类型冲突的方式不同。
+
+```typescript
+//接口继承
+interface A{
+    fn:(value:number)=>void;
+}
+interface B extends A{
+    fn:(value:string)=>void
+}
+```
+
+```typescript
+//交叉类型
+interface A{
+    fn:(value:number) =>void
+}
+interface B{
+    fn:(value:string)=>void
+}
+
+type C = A & B;
+let c:C={
+    fn(value:number | string){
+        return ''; 
+    }
+}
+```
+
+说明：以上代码，接口继承会报错（类型不兼容）；交叉类型没有错误，可以简单的理解为：
+
+```typescript
+fn:(value:string | number)=>void
+```
+
+## 4、泛型
+
+泛型时可以在保证类型安全前提下，让函数等与**多种类型**一起工作，从而**实现复用**，常用于**函数、接口、class中**。
+
+需求：创建一个id函数，传入什么数据就返回该数据本身（也就是说，参数和返回值类型相同）。
+
+```typescript
+function id(value:number):number{return value};
+```
+
+
+
+比如：id(10)调用以上函数就会直接返回10本身。但是，该函数只接受数值类型，无法用于其他类型。
+
+为了能让函数能够接受任意类型，可以将参数类型修改为any。但是，这样就失去了TS的类型保护，类型不安全。
+
+```typescript
+function id(value:any):any{return value};
+```
+
+
+
+泛型在保证类型安全（不丢失类型信息）的同时，可以让函数等与多种不同的类型一起工作，灵活可复用。
+
+实际上，在C#和java等编程语言中，泛型都是用来实现可复用组件功能的主要工具之一。
+
+
+
+### （1）创建泛型函数
+
+```typescript
+function id<Type>(value:Type):Type{
+    return value;
+}
+```
+
+
+
+解释：
+
+1. 语法：在函数名称的后面添加`<>`（尖括号），尖括号中添加类型变量，比如此处的Type
+2. 类型变量Type，是一种特殊类型的变量，它处理类型而不是值。
+3. 该类型变量想相当于一个类型容器，能够捕获用户提供的类型（具体是什么类型由用户调用该函数时指定）。
+4. 因为Type是类型，因此可以将其作为函数参数和返回值的类型，表示参数和返回值具有相同的类型。
+5. 类型变量Type，可以是任意合法的变量名称。
+
+### （2）调用泛型函数
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220509134250.png)
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220509134350.png)
+
+解释：
+
+1. 语法：在函数名称后面添加<>（尖括号），尖括号中指定具体的类型，比如，此处的number。
+2. 当传入类型number后，这个类型就会被函数声名时指定的类型变量Type捕获到
+3. 此时，Type的类型就是number，所以，函数id参数和返回值的类型也都是number。
+
+同样，如果传入类型string，函数id参数和返回值的类型就都是string。
+
+这样，通过泛型就做到了让id函数与多种不同的类型一起工作，实现了复用的同时保证了类型安全。
+
+### （3）简化调用泛型函数
+
+```typescript
+function id<Type>(value:Type):Type{
+    return value
+}
+//正常写法
+let num = id<number>(3)
+//简写形式，利用推断
+let num2 = id(3);
+```
+
+
+
+解释：
+
+1. 在调用泛型函数时，**可以省略<类型>来简化泛型函数的调用。**
+2. 此时，TS内部会采用一种叫做类型参数推断的机制，来根据传入的实参自动推断出类型变量Type的类型。
+3. 比如：传入实参10，TS会自动推断出变量num的类型number，更易于阅读。
+
+推荐：使用这种简化的方式调用泛型函数吗，使代码更短，更易于阅读
+
+说明：当 型参数。
+
+### （4）泛型约束
+
+默认情况下，泛型函数的类型变量Type可以代表多个类型，这导致无法访问任何属性。
+
+比如：`id('a')`调用函数时获取参数的长度：
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220509142036.png)
+
+解释：Type可以代表任意类型，无法保证一定存在length属性，比如numbers类型就没有length。此时，就需要为泛型添加约束来收缩类型（缩窄类型取值范围）
+
+
+
+添加泛型约束收缩类型，主要有以下两种方式：①指定更加具体的类型②添加约束
+
+#### <1> 指定更加具体的类型
+
+```typescript
+function id<Type>(value:Type[]):Type[]{
+    console.log(value.length);
+    return value;
+}
+```
+
+
+
+比如，将类型修改为Type[]（Type类型的数组），因为只要是数组就一定存在length属性，因此就可以访问了。
+
+#### <2> 添加约束
+
+```typescript
+interface ILength{
+    length:number
+}
+function id<Type extends ILength>(value:Type):Type{
+    console.log(value.length);
+    return value;
+}
+// id(12);//number类型不具有length属性
+id('hello');
+```
+
+
+
+解释：
+
+1. 创建描述约束的接口ILength，该接口要求提供length属性。
+2. 通过extends关键字使用该接口，为泛型（类型变量）添加约束。
+3. 该约束表示：传入的类型必须具有length属性。
+
+注意：传入的实参（比如，数组、字符串）只要有length属性即可，这也符合前面讲到的接口的类型兼容性。
+
+### （5）多个泛型变量的情况
+
+泛型的类型变量可以有多个，并且类型变量之间还可以约束（比如，第二个类型变量受第一个类型变量约束）。
+
+比如：创建一个函数来获取对象中属性的值：
+
+```typescript
+function getProps<Type,Key extends keyof Type>(obj:Type,key:Key){
+    return obj[key];
+}
+let person = {
+    name:'luis',
+    age:23
+}
+getProps(person,'age');
+console.log(getProps('hello',2));//l
+console.log(getProps(['one','two','three'],'length'));//3
+```
+
+
+
+解释：
+
+1. 添加了第二个类型变量key，两个类型变量之间使用(,)逗号分隔。
+2. keyof关键字接收一个对象类型，生成其键名称（可能是字符串或数字）的联合类型。
+3. 本示例中keyof Type实际上获取的是person对象所有键的联合类型，也就是`'name'|'age' `
+4. 类型变量Key受Type约束，可以理解为Key只能是Type所有键中的任意一个，或者说只能访问对象中存在的属性。
+
+### （6）泛型接口
+
+接口也可以配合泛型来使用，以增加其灵活性，增强其复用性。
+
+```typescript
+interface IDFunc<Type>{
+    id:(value:Type)=>Type;
+    ids:()=>Type[]
+}
+
+let obj:IDFunc<number> ={
+    id(value){
+        return value
+    },
+    ids(){
+        return [1,2]
+    }
+} 
+```
+
+
+
+解释：
+
+1. 在接口名称的后面添加`<类型变量>`，那么，这个接口就变成了泛型接口。
+2. 接口的类型变量，对接口找那个所有其他成员可见，也就是接口中所有成员都可以使用类型变量
+3. 使用泛型接口时，需要显示指定具体的类型（比如，此处的IdFunc<number>）
+4. 此时，id方法的参数和返回值类型都是number；ids方法的返回值类型是number[]。
+
+### （7）数组就是一个泛型接口
+
+实际上，JS中的数组在TS中就是一个泛型接口。
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220509154218.png)
+
+解释：当我们在使用数组时，TS会根据数组的不同类型，来自动将类型变量设置为相应的类型。
+
+技巧：可以通过Ctrl+鼠标左键来查看具体的类型信息
+
+### （8）泛型类
+
+class也可以配合泛型来使用
+
+比如，React的class组件的基类Component就是泛型类，不同的组件有不同的props和state。
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/20220509154642.png)
+
+解释：React.Component泛型类两个类型变量，分别指定props和state类型
+
+#### <1> 创建泛型类
+
+
+
+解释：
+
+1. 类似于泛型接口，在class名称后面添加<类型变量>，这个类就变成了泛型类。
+2. 此处的add方法，采用的是箭头函数形式的类型书写方式。
 
 
 

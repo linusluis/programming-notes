@@ -1,0 +1,799 @@
+# 一、setState
+
+## 1、setState第一种写法：对象式的setState
+
+setState第一种写法就是我们最熟悉的哪种写法，只不过它可以指定第二个参数。第一个参数是对象，第二个参数是一个回调函数
+
+> setState(stateChange,[callback])------对象式的setState
+>
+> 1. stateChange为状态改变的对象（该对象可以体现出状态的更改）
+> 2. callback是可选的回调函数，它在状态更新完毕、界面也更新后（render）调用后才被调用
+
+说明：
+
+setState是一个同步方法。但是setState引起react后续更新状态的动作是异步的。意思就是如果setState方法后面还有代码，它会先继续向后执行，然后再改状态，更新界面
+
+如下代码，会先输出“第七行的输出 0”，然后状态才会更改
+
+```jsx
+add = ()=>{
+        const {count} = this.state;
+    	//对象式的setState
+        this.setState({count:count+1});
+        console.log('第7行的输出',this.state.count);//第七行的输出 0
+    }
+```
+
+正是因为后续更状态的动作是异步的，所以会输出为0.如果想看到更新之后的状态，则需要为setState()指定第二个参数，这个参数是一个回调函数，在状态和界面更新之后才会执行。如下
+
+```jsx
+add = ()=>{
+        const {count} = this.state;
+    	//对象式的setState
+        this.setState({count:count+1},()=>{
+            console.log('第7行的输出',this.state.count);//第七行的输出 1
+        });
+    }
+```
+
+注意：第二个回调参数是可选的参数。
+
+## 2、setState的第二种写法：函数式的setState()
+
+> setState(updater [callback])--------函数式的setState
+>
+> 1. updater为返回stateChange对象的函数。
+> 2. updater可以接收到state和props。
+> 3. callback是可选的回调函数，它在状态更新、界面也更新后（render调用后）才被调用。
+
+```jsx
+    add = ()=>{
+        const {count} = this.state;
+        //函数式的setState，可以传递state和props
+        this.setState((state,props)=>{
+            console.log(state,props);
+            return {count:count+1}
+        }),()=>{
+            console.log('第14行可以输出state和props的值');
+        }
+    }
+```
+
+
+
+## 3、总结
+
+1. 对象式的setState是函数式的setState的简写方式（语法糖）
+2. 使用原则：
+   1. 如果新状态不依赖于原状态===>使用对象方式
+   2. 如果新状态依赖于原状态===>使用函数方式
+   3. 如果需要在setState()执行后获取最新的状态数据，要在第二个callback函数中读取
+
+
+
+# 二、lazyLoad
+
+路由组件的lazyLoad，一般项目特别大组件特别多的时候，路由都要做懒加载。
+
+为什么要做懒加载呢？假如一个页面有100个路由，无论是否点击过路由链接，实际上，它们都在页面刚加载的时候，随页面 一起加载进来的。这样就会带来一个问题，会增加首屏的响应时间。因此，我们可以通过懒加载的方式解决这个问题。
+
+懒加载就是当我们点击路由链接的时候再加载，不点击就不加载！
+
+使用懒加载的步骤：
+
+1. 使用懒加载，我们要使用lazy函数，首先要引入lazy函数：
+
+   ```jsx
+   import React,{Component,lazy} from 'react'
+   ```
+
+   
+
+2. 然后我们不能使用`import Home from './Home'`这种方式引入组件，使用如下方式引入。
+
+```jsx
+//通过React的lazy函数配合import()函数动态加载路由组件===>路由组件代码会被分开打包
+const Home = lazy(()=>import('./Home'));
+const About = lazy(()=>import('./About'));
+```
+
+3. 引入Suspense，用作组件加载慢的提示
+
+```jsx
+import { Component ,lazy,Suspense} from 'react';
+```
+
+4. 使用Suspense，用Suspense包裹注册的路由，并引入Loading组件，当网络速度慢的时候，就会加载Loading组件，注意Loading组件不能使用lazy函数引入。
+
+```jsx
+{/* 通过<Suspense指定在加载得到路由打包文件前显示一个自定一个的loading界面> */}
+<Suspense fallback = {<Loading/>}>
+  <Route path='/home' component={Home}></Route>
+  <Route path='/about' component={About}></Route>
+</Suspense>
+```
+
+```jsx
+//Loading组件
+import React, { Component } from 'react'
+export default class Loading extends Component {
+  render() {
+    return (
+      <div>
+        <h1 style = {{backgroundColor:'orange',color:'gray'}}>正在加载中...</h1>
+      </div>
+    )
+  }
+}
+
+```
+
+
+
+# 三、Hooks
+
+## 1、React Hook\Hooks是什么？
+
+1. Hook是React 16.8.0版本增加的新特性，新语法
+2. 可以让你在函数组件中使用state以及其他的React特性
+
+## 2、三个常用的Hook
+
+1. State Hook：React.useState()
+2. Effect Hook：React.useEffect()
+3. Ref Hook：React.useRef()
+
+## 3、State Hook
+
+1. 作用：State Hook让函数组件也可以有State状态，并进行状态数据的读写操作。
+2. 语法：const [xxx,setXxx] = React.useState(initValue)
+3. useState(initValue)说明：
+   - 参数：第一次初始化指定的值在内部做缓存
+   - 返回值：包含两个元素的数组，第一个为内部当前状态值\
+4. setXxx()的两种写法：
+   - setXxx(newValue)：参数为非函数值，直接指定新的状态值，内部用其覆盖原来的状态值
+   - setXxx(value=>newValue)：参数为函数，接收原本的状态值，返回新的状态值，内部用其覆盖原来的状态值
+
+```jsx
+import React from 'react';
+function Demo() {
+
+    const [count,setCount] = React.useState(0);
+    const [name,setName] = React.useState('luis');
+    function add(){
+        //第一种写法
+        // setCount(count+1);
+        // 第二种写法：常用这种写法
+        setCount(count=>count+1)
+    }
+    const changeName = ()=>{
+        setName(name =>name = 'papi');
+    }
+    return (
+        <div>
+            <h1>当前求和为：{count}</h1>
+            <h1>我的名字是：{name}</h1>
+            <button onClick={add}>点我+1</button>
+            <button onClick = {changeName}>点我改名</button>
+        </div>
+    )
+}
+export default Demo;
+```
+
+
+
+说明：函数式组件和类式组件一样，当state的状态改变时，会驱动组件渲染，页面更新，也就是每次状态改变 上面代码中的Demo函数都会执行一次，当执行到`const [count,setCount] = React.useState(0)`的时候state本应该被重新赋值为0，但是为什么没有被重新赋值呢？
+
+原因是，react底层做了处理。页面第一次刷新的时候，就把这个count存下来了，之后页面再次更新，就会再调用Demo函数的时候，`const [count,setCount] = React.useState(0)`这条语句确实是执行了，但是因为不会因为它的再次执行，把count的值覆盖掉。
+
+## 4、Effect Hook
+
+1. Effect Hook可以让你在函数组件中执行副作用操作（用于模拟类组件中的生命周期钩子）
+2. React中的副作用操作：
+   - 发ajax请求数据获取
+   - 设置订阅/启动定时器
+   - 手动更改真实DOM
+3. 语法和说明：
+
+>useEffect(()=>{
+>
+>​	//在此可以执行任何带副作用操作
+>
+>return()=>{ //在组件卸载前执行
+>
+>​	//在此做一些收尾工作，比如清除定时器、取消订阅等
+>
+>}
+>
+>},[stateValue])  //如果指定的是[]，回调函数只会在第一次render()后执行。
+
+4. 可以把useEffect Hook看做如下三个函数的组合
+   - componentDidMount()
+   - componentDidupdate()
+   - componentWillUnmount()
+
+具体使用：
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+function Demo() {
+
+    const [count,setCount] = React.useState(0);
+    const [name,setName] = React.useState('luis');
+    function add(){
+        //第一种写法
+        // setCount(count+1);
+        // 第二种写法：常用这种写法
+        setCount(count=>count+1)
+    }
+    const unMount = ()=>{
+        ReactDOM.unmountComponentAtNode(document.getElementById('root'));
+    }
+    React.useEffect(()=>{
+        //此处的代码相当于componentDidMount和componentDidUpdate，到底是哪个
+        //取决于useEffect的第二个参数：如果第二个参数是[]，谁都不监测。那么就相当于componentDidMount,只会 执行一次
+        // 如果第二个参数，数组中有具体内容，比如说：[count，name]，就会监测count和name的变化。那么当count或者name的值更新的时候
+        // 就相当于componentDidUpdate，此处的代码就会执行。
+        //但是如果没有第二个参数，就会监测所有，只要状态有变化，此处的代码就会执行
+        let timer = setTimeout(()=>{
+            setCount(count=>count+1);
+        },1000)
+        return ()=>{
+            //此处的代码相当于componentWillUnMount中的代码，组件要卸载之前执行。
+            //注意一定要卸载返回值的函数里
+            clearTimeout(timer);
+        }
+    },[count])
+    const changeName = ()=>{
+        setName(name =>name = 'papi');
+    }
+    return (
+        <div>
+            <h1>当前求和为：{count}</h1>
+            <h1>我的名字是：{name}</h1>
+            <button onClick={add}>点我+1</button>
+            <button onClick = {changeName}>点我改名</button>
+            <button onClick = {unMount}>点我卸载</button>
+        </div>
+    )
+}
+export default Demo;
+```
+
+
+
+## 5、Ref Hook
+
+1. Ref Hook可以在函数组件中存储、查找组件内的标签或任意其他数据
+2. 语法：`const refContainer = useRef()`
+3. 作用：保存标签对象，功能与React.createRef()一样
+
+具体使用：
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+function Demo() {
+
+    const [count,setCount] = React.useState(0);
+    const [name,setName] = React.useState('luis');
+    const myRef = React.useRef();
+    function add(){
+        //第一种写法
+        // setCount(count+1);
+        // 第二种写法：常用这种写法
+        setCount(count=>count+1)
+    }
+    const show = ()=>{
+        alert(myRef.current.value);
+    }
+    const unMount = ()=>{
+        ReactDOM.unmountComponentAtNode(document.getElementById('root'));
+    }
+    React.useEffect(()=>{
+        //此处的代码相当于componentDidMount和componentDidUpdate，到底是哪个
+        //取决于useEffect的第二个参数：如果第二个参数是[]，谁都不监测。那么就相当于componentDidMount,只会 执行一次
+        // 如果第二个参数，数组中有具体内容，比如说：[count，name]，就会监测count和name的变化。那么当count或者name的值更新的时候
+        // 就相当于componentDidUpdate，此处的代码就会执行。
+        //但是如果没有第二个参数，就会监测所有，只要状态有变化，此处的代码就会执行
+        let timer = setTimeout(()=>{
+            setCount(count=>count+1);
+        },1000)
+        return ()=>{
+            //此处的代码相当于componentWillUnMount中的代码，组件要卸载之前执行。
+            //注意一定要卸载返回值的函数里
+            clearTimeout(timer);
+        }
+    },[count])
+    const changeName = ()=>{
+        setName(name =>name = 'papi');
+    }
+    return (
+        <div>
+            <h1>当前求和为：{count}</h1>
+            <h1>我的名字是：{name}</h1>
+            <input type="text" ref={myRef}/>
+            <button onClick={add}>点我+1</button>
+            <button onClick = {changeName}>点我改名</button>
+            <button onClick = {show}>点我提示输入的数据</button>
+            <button onClick = {unMount}>点我卸载</button>
+        </div>
+    )
+}
+export default Demo;
+```
+
+
+
+
+
+# 四、Fragment
+
+作用：可以不用必须有一个真实的DOM根标签了。
+
+一个组件只能有一个根标签，所以有些时候，我们不得不使用div来包裹，这样导致层级用div包裹的比较多。所以说借助Fragement就能解决这个问题
+
+使用：
+
+借助Fragment代替div
+
+```jsx
+import React, { Component ,Fragment} from 'react'
+
+export default class Demo extends Component {
+  render() {
+    return (
+      <Fragment>{/*<> */}
+        <input type="text" />
+        <input type="text" />
+        {/* </>*/}
+      </Fragment> 
+    )
+  }
+}
+
+```
+
+
+
+说明：有些时候也可以直接使用`<></>`来代替Fragment
+
+但是二者的不同之处在于：
+
+<></>：不能指定key和children属性
+
+Fragment：可以指定key和children属性
+
+# 五、Context
+
+
+
+## 1、理解
+
+> 一种组件间通信方式，常用于【祖组件】与【后代组件】间通信
+
+## 2、使用
+
+1. 创建Context容器对象
+
+```jsx
+const XxxContext = React.createContext()
+```
+
+**注意：**Context容器必须放在所有祖孙组件都能访问得到的地方
+
+
+
+2. 渲染子组件时，外面包裹xxxContent.Provider。通过value属性给后代组件传递数据：
+
+```jsx
+<xxxContext.Provider value={数据}>
+ 子组件   
+</xxxContext.Provider>
+```
+
+3. 后代组件读取数据
+
+```jsx
+//第一种方式：仅适用于类组件
+static contextType = xxxContext
+this.context//读取context中的value数据
+//第二种方式：函数组件与类组件都可以
+<xxxContext.Consumer>
+    {
+    value =>{ //value就是context中的value数据
+    	return 要显示的内容
+	}
+}
+</xxxContext.Consumer>
+```
+
+
+
+示例代码：
+
+```jsx
+import React,{} from 'react'
+import './index.css'
+const MyContext = React.createContext();
+export default function A() {
+    const [personInfo] = React.useState({name:'Tom',age:12});
+  return (
+    <div className = 'parent'>
+      <h1>我是A组件</h1>
+      <h2>我的名字是：{personInfo.name}</h2>
+      <MyContext.Provider value = {personInfo}>
+      <B name = {personInfo.name}/>
+      </MyContext.Provider>
+    </div>
+  )
+}
+
+function B(props){
+    return(
+        <div className = 'child'>
+            <h1>我是B组件</h1>
+            <h2>我从A组件接收到的名字是：{props.name}</h2>
+            <C/>
+        </div>
+    )
+}
+
+function C(){
+    return(
+        <div className = 'grand'>
+            <h1>我是C组件</h1>
+            <h2>我从A组件接收到的名字是：
+                <MyContext.Consumer>
+                    {
+                        value => {
+                            return `${value.name}，年龄是${value.age}岁`
+                        }
+                    }
+                </MyContext.Consumer>
+            </h2>
+        </div>
+    )
+}
+```
+
+
+
+
+
+
+
+# 六、组件优化
+
+
+
+## 1、Component的两个问题
+
+1. 只要执行setState()，即使不改变状态数据，组件也会重新render()==>效率低。如下
+
+```jsx
+change = () => {
+        this.setState({});
+    }
+```
+
+
+
+2. 只要当前组件重新render()，就会自动重新render子组件，纵使子组件没有用到父组件的任何数据==>效率低
+
+```jsx
+return (
+            <div className='parent'>
+                <h1>我是Parent组件</h1>
+                <h2>我的爱车是：{car}</h2>
+                <button onClick={this.change}>点我换车</button>
+                <Child/>{/*例如这样，并没有向子组件传递属性，子组件也会render*/}
+            </div>
+        )
+```
+
+
+
+## 2、效率高的做法
+
+只有当组件的state或props数据发生改变时才重新render()
+
+## 3、原因
+
+Component中的shouldComponentUpdate()总是返回true
+
+## 4、解决
+
+```shell
+
+	
+
+	注意：
+		只是进行state和props数据的浅比较，如果只是数据对象内部数据变了，返回false
+		不要直接修改state数据，而是要产生新数据
+项目中一般使用PureComponent来优化
+```
+
+1. 办法1：
+   	重写shouldComponentUpdate()方法
+   	比较新旧state或props数据，如果有变化才返回true，如果没有返回false
+
+```jsx
+import React, { Component } from 'react'
+import './index.css'
+export default class Parent extends Component {
+    state = { car: '奔驰C63' }
+    change = () => {
+        this.setState({});//这样就是state数据没变化
+    }
+    shouldComponentUpdate(nextProps,nextState){//shouldComponentUpdate可以接收两个参数
+        console.log(this.props,this.state);//目前的props和state
+        console.log(nextProps,nextState);//接下来要变化的目标props，目标state
+        console.log(this.state.car === nextState.car);
+        return !(this.state.car === nextState.car)//这样当state的数据有变化才返回true，没有变化则返回false
+    }
+    render() {
+        console.log('父组件render了')
+        const { car } = this.state;
+        return (
+            <div className='parent'>
+                <h1>我是Parent组件</h1>
+                <h2>我的爱车是：{car}</h2>
+                <button onClick={this.change}>点我换车</button>
+                <Child car = {car}/>
+            </div>
+        )
+    }
+}
+class Child extends Component {
+    render() {
+        console.log('子组件render了')
+        return (
+            <div className = 'child'>
+                <h1>我是Child组件</h1>
+                <h2>我得到的爱车是：{this.props.car}</h2>
+            </div>
+        )
+    }
+}
+
+
+```
+
+2. 办法2：
+   	使用PureComponent代替Component
+   	PureComponent重写了shouldComponentUpdate()，只有state或props数据有变化才返回true。
+
+使用前先引入PureComponent：`import React, { PureComponent} from 'react'`
+
+```jsx
+import React, { PureComponent} from 'react'
+import './index.css'
+export default class Parent extends PureComponent {
+    state = { car: '奔驰C63' }
+    change = () => {
+        this.setState({});//这样就是state数据没变化
+    }
+    // shouldComponentUpdate(nextProps,nextState){//shouldComponentUpdate可以接收两个参数
+    //     console.log(this.props,this.state);//目前的props和state
+    //     console.log(nextProps,nextState);//接下来要变化的目标props，目标state
+    //     console.log(this.state.car === nextState.car);
+    //     return !(this.state.car === nextState.car)//这样当state的数据有变化才返回true，没有变化则返回false
+    // }
+    render() {
+        console.log('父组件render了')
+        const { car } = this.state;
+        return (
+            <div className='parent'>
+                <h1>我是Parent组件</h1>
+                <h2>我的爱车是：{car}</h2>
+                <button onClick={this.change}>点我换车</button>
+                <Child car = {car}/>
+            </div>
+        )
+    }
+}
+class Child extends PureComponent {
+    render() {
+        console.log('子组件render了')
+        return (
+            <div className = 'child'>
+                <h1>我是Child组件</h1>
+                <h2>我得到的爱车是：{this.props.car}</h2>
+            </div>
+        )
+    }
+}
+
+```
+
+
+
+# 七、render props
+
+
+
+如何向组件内部动态传入带内容的结构？（说白了就是如何向组件内部的固定位置安插一个第三方组件）
+
+Vue中：使用slot技术，也就是通过组件标签传入结构`<A><B/></A>`
+
+React中：
+
+使用children props：通过组件标签传入结构
+
+使用render props：通过组件标签属性传入结构，而且可以携带数据，一般用render函数属性。
+
+## 1、Children props
+
+```
+<A>
+	<B>xxxxxx</B>
+</A>
+{this.props.children}
+问题：如果B组件需要A组件内的数据，==>做不到
+```
+
+如下代码使用Childrten props这种方式可以在A组件内部的固定位置安插一个第三方组件B或者是安插由外部引入的C,但是不能带参数：
+
+```jsx
+import React from 'react'
+import C from '../01_setState'
+export default function Parent() {
+  return (
+    <div>
+      <h1>我是Parent组件</h1>
+      <A>
+          <B/>
+          <C />
+      </A>
+    </div>
+  )
+}
+function A(props){
+    console.log(props.children);
+    return (
+        <div>
+            <h1>我是A组件</h1>
+            {props.children}{/*第三方组件位置*/}
+        </div>
+    )
+}
+function B(){
+    return (
+        <div>
+            <h2>我是B组件</h2>
+        </div>
+    )
+}
+```
+
+
+
+
+
+
+
+## 2、render props
+
+```
+<A render = {(data)=>
+	<C data = {data}>
+	</C>}
+</A>>
+A组件：{this.props.render(内部state数据)}
+C组件：读取A组件传入的数据显示{this.props.data}
+```
+
+如下代码使用render props这种方式可以在A组件内部的固定位置安插一个第三方组件B或者是安插由外部引入的C,而且可以带参数：
+
+```jsx
+import React from 'react'
+import C from '../01_setState'
+export default function Parent() {
+  return (
+    <div>
+      <h1>我是Parent组件</h1>
+      <A render = {(name)=>{
+          return (
+          <div>
+              <B name = {name}/>
+              <C name = {name}/>
+          </div>
+          )
+      }}></A>
+    </div>
+  )
+}
+
+function A(props){
+    const [name] = React.useState('luis');
+    return (
+        <div>
+            <h1>我是A组件</h1>
+            {props.render(name)}{/*第三方组件插入位置*/}
+        </div>
+    )
+}
+
+function B(props){
+    return (
+        <div>
+            <h2>我是B组件</h2>
+            {props.name}
+        </div>
+    )
+}
+
+```
+
+
+
+
+
+# 八、错误边界
+
+## 1、理解
+
+错误边界（Error boundary）：用来捕获**后代组件**错误，渲染出备用页面
+
+
+
+## 2、特点
+
+只能捕获后代组件生命周期产生的错误，不能捕获自己组件产生的错误和其他组件在合成事件、定时器中产生的错误
+
+
+
+## 3、使用方式
+
+`getDerivedStateFromError配合componentDidCath`
+
+```jsx
+//生命周期函数，一旦后台组件报错，就会触发
+static getDerivedStateFromError(error){
+    console.log(error)
+    //在render之前触发
+    //返回新的state
+    return {
+        hasError:true
+    };
+}
+componentDidCathc(error,info){
+    //统计页面的错误，发送请求发送到后台去
+    console.log(error,info)
+}
+```
+
+
+
+
+
+# 九、组件通信方式总结
+
+## 1、组件间的关系
+
+- 父子组件
+- 兄弟组件
+- 祖孙组件
+
+## 2、几种通信方式
+
+1. props：
+   		(1).children props
+   		(2).render props
+2. 消息订阅-发布：
+   		pubs-sub、event等等
+3.  集中式管理：
+   		redux、dva等等
+4. conText:
+   		生产者-消费者模式
+
+## 3、比较好的搭配方式
+
+父子组件：props
+
+兄弟组件：消息订阅-发布、集中式管理
+
+祖孙组件(跨级组件)：消息订阅-发布、集中式管理、conText(开发用的少，封装插件用的多)
