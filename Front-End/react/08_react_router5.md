@@ -712,3 +712,232 @@ export default class Detail extends Component{
 
 # 十二、路由跳转方式：push方式、replace方式
 ## 1、push方式
+
+- 路由跳转默认是push方式
+
+- 图示
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/1650961507443-b0831b97-3e87-4dcd-b3bc-6b97f2dab1e8.png)
+
+## 2、replace方式
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/1650961261507-4db92e37-f19f-4276-b188-1d1b5ce52b97.png)
+
+- 设置方式：在Link标签中设置replace或者replace={true}`<Link replace ={true} to={{pathname:'/home/message/detail',state:{id:msgObj.id,title:msgObj.title}}}>{msgObj.title}</Link> `
+- 如果所有路由链接都开启了replace方式，则不会生成历史记录
+- replace效果演示
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/1650961669407-78622e51-15cf-408f-86e9-2d79d3acfa3d.gif)
+
+## 3、编程式路由导航
+
+### （1）实现这样的效果
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/1650962683051-ad311c49-1b7f-4d56-b954-6adffd2ed1f1.gif)
+
+- 实现代码
+
+```jsx
+//Message组件
+import React, { Component } from 'react'
+import { Link, Route } from 'react-router-dom';
+import Detail from './Detail';
+export default class Message extends Component {
+
+    state = {
+        messageArr: [
+            { id: '01', title: '消息1' },
+            { id: '02', title: '消息2' },
+            { id: '03', title: '消息3' }
+        ]
+    }
+		//编程式路由导航
+    replaceShow = (id,title)=>{
+        // 编写一段代码，让其实现跳转到Detail组件，且为replace跳转
+        //replace跳转+携带params参数
+        // this.props.history.replace(`/home/message/detail/${id}/${title}`);
+        //replace跳转+携带search参数
+        // this.props.history.replace(`/home/message/detail/?id=${id}&title=${title}`);
+        this.props.history.replace('/home/message/detail',{id:id,title:title});
+    }
+  //编程式路由导航
+    pushShow = (id,title) =>{
+        // 编写一段代码，让其实现跳转到Detail组件，且为push跳转
+        // push跳转+携带params参数
+        // this.props.history.push(`/home/message/detail/${id}/${title}`);
+        // push跳转+携带params参数
+        // this.props.history.push(`/home/message/detail/?id=${id}&title=${title}`);
+        // push跳转+携带state参数
+        this.props.history.push('/home/message/detail',{id:id,title:title});
+
+    }
+  //编程式路由导航
+    forWard = ()=>{
+        this.props.history.goForward();
+    }
+  //编程式路由导航
+    back = ()=>{
+        this.props.history.goBack();
+    }
+  //编程式路由导航
+    go=()=>{
+        this.props.history.go(-2);
+    }
+
+    render() {
+        const { messageArr } = this.state;
+        return (
+            <div>
+                <ul>
+                    {
+                        messageArr.map(msgObj => {
+                            return (
+                                <li key={msgObj.id}>
+                                    {/* 向路由组件传递params参数 */}
+                                    <Link to={`/home/message/detail/${msgObj.id}/${msgObj.title}`} >{msgObj.title}</Link>&nbsp;&nbsp;
+                                    &nbsp;<button onClick= {()=>this.pushShow(msgObj.id,msgObj.title)}>push查看</button>
+                                    &nbsp;<button onClick= {()=>this.replaceShow(msgObj.id,msgObj.title)}>replace查看</button>
+                                    {/* 向路由组件传递search参数 */}
+                                    {/* <Link to={`/home/message/detail/?id=${msgObj.id}&title=${msgObj.title}`} >{msgObj.title}</Link>&nbsp;&nbsp; */}
+                                    {/* 向路由组件传递state参数 */}
+                                    {/* <Link replace ={true} to={{pathname:'/home/message/detail',state:{id:msgObj.id,title:msgObj.title}}}>{msgObj.title}</Link>&nbsp;&nbsp; */}
+
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+                <hr />
+                {/* 声名接收params参数 */}
+                {/* <Route path = '/home/message/detail/:id/:title' component = {Detail}></Route> */}
+                
+                {/* search参数无需声名接收 ，正常注册路由即可*/}
+                <Route path = '/home/message/detail' component = {Detail}></Route>
+                {/* state参数无需声名接收 ，正常注册路由即可*/}
+                {/* <Route path = '/home/message/detail' component = {Detail}></Route> */}
+
+                <button onClick = {this.back}>回退</button>
+                <button onClick = {this.forWard}>前进</button>
+                <button onClick = {this.go}>Go</button>
+            </div>
+        )
+    }
+}
+```
+
+```jsx
+//DEtails组件，用于接收参数，和编程式路由导航没太大关系
+import React, { Component } from 'react'
+// import queryString from 'query-string';
+const Detaildata = [
+    {id:'01',content:'我爱你中国'},
+    {id:'02',content:'我爱你CHANGCHUN'},
+    {id:'03',content:'我爱你CG'}
+];
+export default class Detail extends Component {
+
+    
+  render() {
+    console.log(this.props);
+    //接收params参数
+    // const {id,title} = this.props.match.params;
+    // 接收search参数
+    // const {search} = this.props.location;
+    // const {id,title} = queryString.parse(search.slice(1));
+    //接收state参数
+    const {id,title} = this.props.location.state || {};
+    const findResult = Detaildata.find((detailObj)=>{
+        return detailObj.id === id;
+    }) || {};
+    return (
+      <ul>
+          <li>ID:{id}</li>
+          <li>Title:{title}</li>
+          <li>ConTent:{findResult.content}</li>
+      </ul>
+    )
+  }
+}
+```
+
+### （2）需求2
+
+- 还有一个需求：在News组件停3s，然后路由到Message组件
+
+- 实现：在News组件中添加如下代码：
+
+  ```jsx
+    componentDidMount() {
+          setTimeout(() =>{
+            this.props.history.push('/home/message');
+          },3000)
+        }
+  ```
+
+  ### 
+
+  
+
+### （3）小总结
+
+- 编程式路由导航就是不使用`<Link>`\`<NavLink>`\`<MyNavLink>`，实现路由跳转。而是通过绑定事件函数或其他函数方式实现路由跳转，而且还可以通过上面说的三种方法（params,search,state）传递参数。此外还可以实现前进后退效果
+- 在这一部分验证了路由组件中history属性的方法：可实现跳转、前进、后退
+
+- - this.props.hisytory.push：可回退路式由跳转
+  - this.props.hisytory.replace：覆盖式路由跳转
+  - this.props.hisytory.goBack()：前进
+  - this.props.hisytory.goForward()：后退
+  - this.props.hisytory.go()：前进或回退（正数是前进的步数，负数是回退的步数）
+
+## 4、withRouter的使用
+
+- withRouter可以加工一般组件，让一般组件具备由路由组件所特有的API
+- withRouter的返回值是一个新组件
+- withRouter能够接收一般组件作为参数，然后就把这个一般组件的身上加上了路由组件所特有的那三个东西	Location\History\Match
+- 如下案例，Header是一般组件，使用withRouter在Header上添加按钮，实现回退功能
+
+![](https://gitee.com/Jeren/cloudimages/raw/master/img/1650966870784-a15170ab-8b0d-4f4c-b7d6-e0b62b89c0a1.gif)
+
+
+
+```jsx
+import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
+class Header extends Component {
+    back =()=>{
+        this.props.history.goBack();
+    }
+    render() {
+        console.log("Header接收到的props是：", this.props);
+        return (
+            <div>
+                <h2>React Router Demo</h2>
+                <button onClick = {this.forward}>前进</button>
+                <button onClick = {this.back}>后退</button>
+                <button onClick = {this.go}>Go</button>
+            </div>
+
+        )
+    }
+}
+export default withRouter(Header)
+```
+
+## 5、BrowserRouter和HashRouter的不同
+
+1. 底层原理不一样：
+
+1. 1. BrowserRouter使用的是H5的history API，不兼容IE9以下版本
+   2. HashRouter使用的是URL的哈希值
+
+2. url表现形式不一样
+
+1. 1. BrowserRouter的路径中没有#，例如：localhost:3000/demo/test
+   2. HashRouter的路径包含#，例如：localhost:3000/#/demo/test
+
+3. 刷新后对路由state参数的影响
+
+1. 1. 对BrowserRouter没有任何影响
+   2. HashRouter刷新后会导致路由state参数的丢失
+
+备注：HashRouter可以用于解决一些路径错误的相关问题（比如说前面提到的，路由链接前面加公司名的时候会有样式丢失问题）
