@@ -101,7 +101,7 @@ let age:number = 18;
 
 ### （1）常用基础类型概述
 可以将ts中的常用基类型细分为两类：
-1. js已由类型
+1. js已有类型
 - 原始类型：number/string/boolean/null/undefined/symbol
 
 特点：简单。这些类型，完全按照js中类型的名称来书写。
@@ -175,6 +175,7 @@ let arr2: CustomArray = [2,5,'b',4,'r'];
 
 函数的类型实际上指的是：函数**参数**和**返回值**的类型
 为函数指定类型的两种方式：
+
 1. 单独指定参数、返回值的类型。
 ```typescript
 function add(num1:number,num2:number):number{
