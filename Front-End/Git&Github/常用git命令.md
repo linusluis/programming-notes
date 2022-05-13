@@ -12,7 +12,7 @@
 
 6. `git commit -m 描述`：添加到本地仓库
 
-7. `git pull`：拉取远程更新
+7. `git pull origin main:本地要合并的分支名称`：拉取远程更新
 
 8. `git push origin dev` 推送到远程dev分支
 
@@ -41,3 +41,15 @@
 >通用分支关联，此操作仅关联，不提交
 >
 >git branch --set-upstream-to=origin/远程分支名称 本地分支名称
+
+
+
+拉取的一些命令
+
+>将远程主机 origin 的 master 分支拉取过来，与本地的 brantest 分支合并
+>
+>git pull origin master:brantest
+>
+>如果远程分支是与当前分支合并，则冒号后面的部分可以省略。
+>
+>git pull origin master
