@@ -15,6 +15,11 @@
 
 ### JavaScript
 
+| 笔记 | 技术文档 | 技术文章 | 开发手册 | 总结文章 | 内置对象 | 其他 |
+| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
+|     | Title | ??? | [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript) | ??? | [Object]()
+| Paragraph   | Text        | ??? | 
+
 ### ES6
 
 ### Bootstrap
