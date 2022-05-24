@@ -17,7 +17,7 @@
 
 | 笔记 | 技术文档 | 技术文章 | 开发手册 | 总结文章 | 内置对象 | 其他 |
 | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
-|     | Title | ??? | [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript) | ??? | [Object]()
+|     | Title | ??? | [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript) | ??? | [Object](https://github.com/linusluis/programming-notes/blob/9c5cfb003968bbc7a7cac15bee01c49c0f0e3c78/Front-End/JavaScript/Object.md)
 | Paragraph   | Text        | ??? | 
 
 ### ES6
